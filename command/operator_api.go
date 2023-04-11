@@ -135,10 +135,17 @@ func (c *OperatorAPICommand) Run(args []string) int {
 
 	// By default verbose func is a noop
 	verbose := func(string, ...interface{}) {}
+	verboseSocket := func(*api.Config, string, ...interface{}) {}
+
 	if c.verboseFlag {
 		verbose = func(format string, a ...interface{}) {
 			// Use Warn instead of Info because Info goes to stdout
 			c.Ui.Warn(fmt.Sprintf(format, a...))
+		}
+		verboseSocket = func(cfg *api.Config, format string, a ...interface{}) {
+			if cfg.SocketPath != "" {
+				c.Ui.Warn(fmt.Sprintf(format, a...))
+			}
 		}
 	}
 
@@ -198,14 +205,21 @@ func (c *OperatorAPICommand) Run(args []string) int {
 	apiR := apiC.Raw()
 
 	setQueryParams(config, path)
-
-	verbose("> %s %s", c.method, path)
+	verboseSocket(config, fmt.Sprintf("*   Trying %s:0...", config.SocketPath))
 
 	req, err := http.NewRequest(c.method, path.String(), c.body)
 	if err != nil {
 		c.Ui.Error(fmt.Sprintf("Error making request: %v", err))
 		return 1
 	}
+	var h, p string
+	h = req.URL.Hostname()
+	if p = req.URL.Port(); p == "" {
+		p = "80"
+	}
+
+	verboseSocket(config, fmt.Sprintf("* Connected to %s (%s) port %s (#0)", h, config.SocketPath, p))
+	verbose("> %s %s %s", c.method, req.URL.Path, req.Proto)
 
 	// Set headers from command line
 	req.Header = headerFlags.headers
@@ -229,7 +243,7 @@ func (c *OperatorAPICommand) Run(args []string) int {
 			verbose("> %s: %s", k, v)
 		}
 	}
-
+	verbose(">")
 	verbose("* Sending request and receiving response...")
 
 	// Do the request!
@@ -295,12 +309,17 @@ func (c *OperatorAPICommand) apiToCurl(config *api.Config, headers http.Header, 
 		parts = append(parts, "--verbose")
 	}
 
-	if c.method != "" {
+	// add method flags. Note: curl output complains about `-X GET`
+	if c.method != "" && c.method != http.MethodGet {
 		parts = append(parts, "-X "+c.method)
 	}
 
 	if c.body != nil {
 		parts = append(parts, "--data-binary @-")
+	}
+
+	if config.SocketPath != "" {
+		parts = append(parts, fmt.Sprintf("--unix-socket %q", config.SocketPath))
 	}
 
 	if config.TLSConfig != nil {
