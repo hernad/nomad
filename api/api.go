@@ -199,6 +199,11 @@ type Config struct {
 	// TLSConfig is ignored if HttpClient is set.
 	TLSConfig *TLSConfig
 
+	// SocketPath configures the client to use a Unix domain socket path rather
+	// than the path provided in Address. Addresses using the `unix://` scheme
+	// will also populate this path and replace `Address` with a placeholder.
+	SocketPath string
+
 	Headers http.Header
 }
 
@@ -273,9 +278,51 @@ func (t *TLSConfig) Copy() *TLSConfig {
 	return nt
 }
 
+// defaultUDSClient creates a unix domain socket client. Errors return a nil
+// http.Client, which is tested for in ConfigureTLS
+func defaultUDSClient(config *Config) *http.Client {
+	addrURL, err := url.Parse(config.Address)
+	if err != nil {
+		return nil
+	}
+
+	// If this test fails, someone called the function but broke the expected
+	// invariants
+	if addrURL.Scheme != "unix" && config.SocketPath == "" {
+		return nil
+	}
+
+	// we are called when config.SocketPath is not "" or when the url.Scheme
+	// is "unix". If the address is unix-schemed, we need to scrape it out
+	// and provide a HTTP-compatible replacement value
+	if addrURL.Scheme == "unix" {
+		config.Address = "http://127.0.0.1"
+	}
+
+	// If config.SocketPath isn't set and we are dealing with a unix-schemed
+	// url, we should use the provided path. Otherwise, prefer the existing
+	// config.SocketPath
+	if addrURL.Scheme == "unix" && config.SocketPath == "" {
+		config.SocketPath = addrURL.EscapedPath()
+	}
+
+	httpClient := &http.Client{
+		Transport: &http.Transport{
+			DialContext: func(_ context.Context, _, _ string) (net.Conn, error) {
+				return net.Dial("unix", config.SocketPath)
+			},
+		},
+	}
+	return defaultClient(httpClient)
+}
+
 func defaultHttpClient() *http.Client {
 	httpClient := cleanhttp.DefaultPooledClient()
-	transport := httpClient.Transport.(*http.Transport)
+	return defaultClient(httpClient)
+}
+
+func defaultClient(c *http.Client) *http.Client {
+	transport := c.Transport.(*http.Transport)
 	transport.TLSHandshakeTimeout = 10 * time.Second
 	transport.TLSClientConfig = &tls.Config{
 		MinVersion: tls.VersionTLS12,
@@ -285,7 +332,7 @@ func defaultHttpClient() *http.Client {
 	// well yet: https://github.com/gorilla/websocket/issues/417
 	transport.ForceAttemptHTTP2 = false
 
-	return httpClient
+	return c
 }
 
 // DefaultConfig returns a default configuration for the client
@@ -342,6 +389,9 @@ func DefaultConfig() *Config {
 	}
 	if v := os.Getenv("NOMAD_TOKEN"); v != "" {
 		config.SecretID = v
+	}
+	if v := os.Getenv("NOMAD_SOCKET_PATH"); v != "" {
+		config.SocketPath = v
 	}
 	return config
 }
@@ -473,7 +523,15 @@ func NewClient(config *Config) (*Client, error) {
 
 	httpClient := config.HttpClient
 	if httpClient == nil {
-		httpClient = defaultHttpClient()
+		addrURL, _ := url.Parse(config.Address)
+
+		switch {
+		case config.SocketPath != "", addrURL.Scheme == "unix":
+			httpClient = defaultUDSClient(config) // mutates config
+		default:
+			httpClient = defaultHttpClient()
+		}
+
 		if err := ConfigureTLS(httpClient, config.TLSConfig); err != nil {
 			return nil, err
 		}
