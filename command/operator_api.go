@@ -5,7 +5,6 @@ package command
 
 import (
 	"bytes"
-	"crypto/tls"
 	"fmt"
 	"io"
 	"net"
@@ -13,9 +12,7 @@ import (
 	"net/url"
 	"os"
 	"strings"
-	"time"
 
-	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/nomad/api"
 	"github.com/posener/complete"
 )
@@ -170,7 +167,7 @@ func (c *OperatorAPICommand) Run(args []string) int {
 
 	// NewClient mutates or validates Config.Address, so call it to match
 	// the behavior of other commands.
-	_, err := api.NewClient(config)
+	apiC, err := api.NewClient(config)
 	if err != nil {
 		c.Ui.Error(fmt.Sprintf("Error initializing client: %v", err))
 		return 1
@@ -198,19 +195,7 @@ func (c *OperatorAPICommand) Run(args []string) int {
 		c.Ui.Output(out)
 		return 0
 	}
-
-	// Re-implement a big chunk of api/api.go since we don't export it.
-	client := cleanhttp.DefaultClient()
-	transport := client.Transport.(*http.Transport)
-	transport.TLSHandshakeTimeout = 10 * time.Second
-	transport.TLSClientConfig = &tls.Config{
-		MinVersion: tls.VersionTLS12,
-	}
-
-	if err := api.ConfigureTLS(client, config.TLSConfig); err != nil {
-		c.Ui.Error(fmt.Sprintf("Error configuring TLS: %v", err))
-		return 1
-	}
+	apiR := apiC.Raw()
 
 	setQueryParams(config, path)
 
@@ -248,7 +233,7 @@ func (c *OperatorAPICommand) Run(args []string) int {
 	verbose("* Sending request and receiving response...")
 
 	// Do the request!
-	resp, err := client.Do(req)
+	resp, err := apiR.Do(req)
 	if err != nil {
 		c.Ui.Error(fmt.Sprintf("Error performing request: %v", err))
 		return 1
