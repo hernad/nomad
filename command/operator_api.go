@@ -413,13 +413,12 @@ func tlsToCurl(parts []string, tlsConfig *api.TLSConfig) []string {
 // all default values are set correctly. Failure to do so will likely result in
 // a nil-pointer.
 func pathToURL(config *api.Config, path string) (*url.URL, error) {
-	pPath, err := url.Parse(path)
-	if err != nil {
-		return nil, err
-	}
+
 	// If the scheme is missing from the path, it likely means the path is just
 	// the HTTP handler path. Attempt to infer this.
-	if pPath.Scheme == "" {
+	if !strings.HasPrefix(path, "http://") &&
+		!strings.HasPrefix(path, "https://") &&
+		!strings.HasPrefix(path, "unix://") {
 		scheme := "http"
 
 		// If the user has set any TLS configuration value, this is a good sign
