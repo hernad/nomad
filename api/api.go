@@ -205,6 +205,10 @@ type Config struct {
 	SocketPath string
 
 	Headers http.Header
+
+	// url is populated with the initial parsed address and is not modified in the
+	// case of a unix:// URL, as opposed to Address.
+	url *url.URL
 }
 
 // ClientConfig copies the configuration with a new client address, region, and
@@ -214,6 +218,7 @@ func (c *Config) ClientConfig(region, address string, tlsEnabled bool) *Config {
 	if tlsEnabled {
 		scheme = "https"
 	}
+
 	config := &Config{
 		Address:    fmt.Sprintf("%s://%s", scheme, address),
 		Region:     region,
@@ -223,6 +228,7 @@ func (c *Config) ClientConfig(region, address string, tlsEnabled bool) *Config {
 		HttpAuth:   c.HttpAuth,
 		WaitTime:   c.WaitTime,
 		TLSConfig:  c.TLSConfig.Copy(),
+		url:        copyURL(c.url),
 	}
 
 	// Update the tls server name for connecting to a client
@@ -279,31 +285,28 @@ func (t *TLSConfig) Copy() *TLSConfig {
 }
 
 // defaultUDSClient creates a unix domain socket client. Errors return a nil
-// http.Client, which is tested for in ConfigureTLS
+// http.Client, which is tested for in ConfigureTLS. This function expects that
+// the Address has already been parsed into the config.url value.
 func defaultUDSClient(config *Config) *http.Client {
-	addrURL, err := url.Parse(config.Address)
-	if err != nil {
-		return nil
-	}
 
 	// If this test fails, someone called the function but broke the expected
 	// invariants
-	if addrURL.Scheme != "unix" && config.SocketPath == "" {
+	if config.url.Scheme != "unix" && config.SocketPath == "" {
 		return nil
 	}
 
 	// we are called when config.SocketPath is not "" or when the url.Scheme
 	// is "unix". If the address is unix-schemed, we need to scrape it out
 	// and provide a HTTP-compatible replacement value
-	if addrURL.Scheme == "unix" {
+	if config.url.Scheme == "unix" {
 		config.Address = "http://127.0.0.1"
 	}
 
 	// If config.SocketPath isn't set and we are dealing with a unix-schemed
 	// url, we should use the provided path. Otherwise, prefer the existing
 	// config.SocketPath
-	if addrURL.Scheme == "unix" && config.SocketPath == "" {
-		config.SocketPath = addrURL.EscapedPath()
+	if config.url.Scheme == "unix" && config.SocketPath == "" {
+		config.SocketPath = config.url.EscapedPath()
 	}
 
 	httpClient := &http.Client{
@@ -512,21 +515,24 @@ type Client struct {
 
 // NewClient returns a new client
 func NewClient(config *Config) (*Client, error) {
+	var err error
 	// bootstrap the config
 	defConfig := DefaultConfig()
 
 	if config.Address == "" {
 		config.Address = defConfig.Address
-	} else if _, err := url.Parse(config.Address); err != nil {
+	}
+
+	// we have to test the address that comes from DefaultConfig, because it
+	// could be the value of NOMAD_ADDR which is applied without testing
+	if config.url, err = url.Parse(config.Address); err != nil {
 		return nil, fmt.Errorf("invalid address '%s': %v", config.Address, err)
 	}
 
 	httpClient := config.HttpClient
 	if httpClient == nil {
-		addrURL, _ := url.Parse(config.Address)
-
 		switch {
-		case config.SocketPath != "", addrURL.Scheme == "unix":
+		case config.SocketPath != "", config.url.Scheme == "unix":
 			httpClient = defaultUDSClient(config) // mutates config
 		default:
 			httpClient = defaultHttpClient()
@@ -779,7 +785,7 @@ func (r *request) toHTTP() (*http.Request, error) {
 
 // newRequest is used to create a new request
 func (c *Client) newRequest(method, path string) (*request, error) {
-	base, _ := url.Parse(c.config.Address)
+
 	u, err := url.Parse(path)
 	if err != nil {
 		return nil, err
@@ -788,9 +794,9 @@ func (c *Client) newRequest(method, path string) (*request, error) {
 		config: &c.config,
 		method: method,
 		url: &url.URL{
-			Scheme:  base.Scheme,
-			User:    base.User,
-			Host:    base.Host,
+			Scheme:  c.config.url.Scheme,
+			User:    c.config.url.User,
+			Host:    c.config.url.Host,
 			Path:    u.Path,
 			RawPath: u.RawPath,
 		},
@@ -1239,4 +1245,17 @@ func (o *WriteOptions) WithContext(ctx context.Context) *WriteOptions {
 	}
 	o2.ctx = ctx
 	return o2
+}
+
+// copyURL makes a deep copy of a net/url.URL
+func copyURL(u1 *url.URL) *url.URL {
+	if u1 == nil {
+		return nil
+	}
+	o := *u1
+	if o.User != nil {
+		ou := *u1.User
+		o.User = &ou
+	}
+	return &o
 }
