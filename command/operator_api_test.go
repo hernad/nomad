@@ -287,7 +287,7 @@ func TestOperatorAPICommand_Socket(t *testing.T) {
 
 			select {
 			case l := <-ping:
-				require.Equal(t, struct{}{}, l)
+				must.Eq(t, struct{}{}, l)
 			case <-time.After(10 * time.Second):
 				t.Fatalf("timed out waiting for request")
 			}
