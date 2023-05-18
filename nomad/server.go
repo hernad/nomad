@@ -10,6 +10,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/hashicorp/nomad/nomad/lock"
 	"net"
 	"net/rpc"
 	"os"
@@ -263,6 +264,10 @@ type Server struct {
 	// shutting down, the oidcProviderCache.Shutdown() function must be called.
 	oidcProviderCache *oidc.ProviderCache
 
+	//
+	lockDelay *lock.Delay
+	lockTimer *lock.Timer
+
 	// leaderAcl is the management ACL token that is valid when resolved by the
 	// current leader.
 	leaderAcl     string
@@ -376,6 +381,8 @@ func NewServer(config *Config, consulCatalog consul.CatalogAPI, consulConfigEntr
 		rpcTLS:                  incomingTLS,
 		aclCache:                aclCache,
 		workersEventCh:          make(chan interface{}, 1),
+		lockTimer:               lock.NewTimer(),
+		lockDelay:               lock.NewDelay(),
 	}
 
 	s.shutdownCtx, s.shutdownCancel = context.WithCancel(context.Background())

@@ -5,11 +5,14 @@ package structs
 
 import (
 	"bytes"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
 	"reflect"
 	"regexp"
 	"strings"
+	"time"
 )
 
 const (
@@ -50,6 +53,80 @@ type VariableMetadata struct {
 	CreateTime  int64
 	ModifyIndex uint64
 	ModifyTime  int64
+
+	Lock *VariableLock
+}
+
+type VariableLock struct {
+	ID        string        `hcl:"id"`
+	TTL       time.Duration `hcl:"ttl"`
+	LockDelay time.Duration `hcl:"lock_delay"`
+}
+
+// MarshalJSON implements the json.Marshaler interface and allows
+// Variable.Lock.TTL to be marshaled correctly.
+func (vl *VariableLock) MarshalJSON() ([]byte, error) {
+	type Alias VariableLock
+	exported := &struct {
+		TTL       string
+		LockDelay string
+		*Alias
+	}{
+		Alias: (*Alias)(vl),
+	}
+
+	exported.TTL = vl.TTL.String()
+	exported.LockDelay = vl.LockDelay.String()
+	if vl.TTL == 0 {
+		exported.TTL = ""
+	}
+	if vl.LockDelay == 0 {
+		exported.LockDelay = ""
+	}
+
+	return json.Marshal(exported)
+}
+
+// UnmarshalJSON implements the json.Unmarshaler interface and allows
+// Variable.Lock.TTL to be unmarshalled correctly.
+func (vl *VariableLock) UnmarshalJSON(data []byte) (err error) {
+	type Alias VariableLock
+	aux := &struct {
+		TTL       any
+		LockDelay any
+		*Alias
+	}{
+		Alias: (*Alias)(vl),
+	}
+
+	if err = json.Unmarshal(data, &aux); err != nil {
+		spew.Dump(err)
+		return err
+	}
+
+	switch ttlVal := aux.TTL.(type) {
+	case string:
+		if ttlVal != "" {
+			if vl.TTL, err = time.ParseDuration(ttlVal); err != nil {
+				return err
+			}
+		}
+	case float64:
+		vl.TTL = time.Duration(ttlVal)
+	}
+
+	switch lockDelayVal := aux.LockDelay.(type) {
+	case string:
+		if lockDelayVal != "" {
+			if vl.LockDelay, err = time.ParseDuration(lockDelayVal); err != nil {
+				return err
+			}
+		}
+	case float64:
+		vl.TTL = time.Duration(lockDelayVal)
+
+	}
+	return nil
 }
 
 // VariableEncrypted structs are returned from the Encrypter's encrypt
@@ -235,6 +312,10 @@ func (sv VariableMetadata) GetID() string {
 	return sv.Path
 }
 
+func (sv VariableMetadata) GetNamespacedID() string {
+	return sv.Namespace + "_" + sv.Path
+}
+
 // GetCreateIndex returns the variable's create index. Used for pagination.
 func (sv VariableMetadata) GetCreateIndex() uint64 {
 	return sv.CreateIndex
@@ -272,6 +353,9 @@ const (
 	VarOpDelete    VarOp = "delete"
 	VarOpDeleteCAS VarOp = "delete-cas"
 	VarOpCAS       VarOp = "cas"
+
+	VarOpLock   VarOp = "lock"
+	VarOpUnlock VarOp = "unlock"
 )
 
 // VarOpResult constants give possible operations results from a transaction.
@@ -397,6 +481,18 @@ type VariablesReadRequest struct {
 }
 
 type VariablesReadResponse struct {
+	Data *VariableDecrypted
+	QueryMeta
+}
+
+type VariablesRenewLockRequest struct {
+	Path      string
+	Namespace string
+	LockID    string
+	QueryOptions
+}
+
+type VariablesRenewLockResponse struct {
 	Data *VariableDecrypted
 	QueryMeta
 }

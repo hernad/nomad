@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
 	"io"
 	"net/http"
 	"strings"
@@ -306,6 +307,8 @@ func (vars *Variables) writeChecked(endpoint string, in *Variable, out *Variable
 	r.setWriteOptions(q)
 	r.obj = in
 
+	spew.Dump(in)
+
 	checkFn := requireStatusIn(http.StatusOK, http.StatusNoContent, http.StatusConflict)
 	rtt, resp, err := checkFn(vars.client.doRequest(r))
 
@@ -359,8 +362,16 @@ type Variable struct {
 	// ModifyTime is the unix nano of the last modified time
 	ModifyTime int64 `hcl:"modify_time"`
 
+	Lock *VariableLock `json:",omitempty"`
+
 	// Items contains the k/v variable component
 	Items VariableItems `hcl:"items"`
+}
+
+type VariableLock struct {
+	ID        string
+	TTL       time.Duration
+	LockDelay time.Duration
 }
 
 // VariableMetadata specifies the metadata for a variable and
@@ -383,6 +394,8 @@ type VariableMetadata struct {
 
 	// ModifyTime is the unix nano of the last modified time
 	ModifyTime int64 `hcl:"modify_time"`
+
+	Lock *VariableLock `json:",omitempty"`
 }
 
 // VariableItems are the key/value pairs of a Variable.
@@ -411,7 +424,7 @@ func (v *Variable) Copy() *Variable {
 // a Variable. This can be useful for comparing against
 // a List result.
 func (v *Variable) Metadata() *VariableMetadata {
-	return &VariableMetadata{
+	variable := &VariableMetadata{
 		Namespace:   v.Namespace,
 		Path:        v.Path,
 		CreateIndex: v.CreateIndex,
@@ -419,6 +432,13 @@ func (v *Variable) Metadata() *VariableMetadata {
 		CreateTime:  v.CreateTime,
 		ModifyTime:  v.ModifyTime,
 	}
+	if v.Lock != nil {
+		variable.Lock = &VariableLock{
+			TTL:       v.Lock.TTL,
+			LockDelay: v.Lock.LockDelay,
+		}
+	}
+	return variable
 }
 
 // IsZeroValue can be used to test if a Variable has been changed

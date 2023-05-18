@@ -108,6 +108,12 @@ func (sv *Variables) Apply(args *structs.VariablesApplyRequest, reply *structs.V
 	if err != nil {
 		return err
 	}
+
+	if ev.Lock != nil {
+		sv.srv.lockDelay.SetExpiration(ev.GetNamespacedID(), time.Now(), ev.Lock.LockDelay)
+		sv.srv.lockTimer.ResetOrCreate(ev.GetNamespacedID(), ev.Lock.TTL, func() { sv.srv.invalidateVariableLock(ev) })
+	}
+
 	*reply = *r
 	reply.Index = index
 	return nil
@@ -578,4 +584,44 @@ func (sv *Variables) groupForAlloc(claims *structs.IdentityClaims) (string, erro
 		return "", structs.ErrPermissionDenied
 	}
 	return alloc.TaskGroup, nil
+}
+
+func (sv *Variables) RenewLock(args *structs.VariablesRenewLockRequest, reply *structs.VariablesRenewLockResponse) error {
+
+	authErr := sv.srv.Authenticate(sv.ctx, args)
+	if done, err := sv.srv.forward("Variables.RenewLock", args, args, reply); done {
+		return err
+	}
+	sv.srv.MeasureRPCRate("variables", structs.RateMetricRead, args)
+	if authErr != nil {
+		return structs.ErrPermissionDenied
+	}
+
+	defer metrics.MeasureSince([]string{"nomad", "variables", "renew_lock"}, time.Now())
+
+	_, _, err := sv.handleMixedAuthEndpoint(args.QueryOptions, acl.PolicyRead, args.Path)
+	if err != nil {
+		return err
+	}
+
+	fmsState := sv.srv.fsm.State()
+
+	variable, err := fmsState.GetVariable(nil, args.Namespace, args.Path)
+	if err != nil {
+		return err
+	}
+	if variable == nil {
+		return nil
+	}
+
+	if variable.Lock == nil {
+		return structs.NewErrRPCCoded(http.StatusBadRequest, "unable to renew lock on variable")
+	}
+	if variable.Lock.ID != args.LockID {
+		return structs.NewErrRPCCoded(http.StatusBadRequest, "naughty non-lock holder")
+	}
+
+	// Reset the session TTL timer.
+	sv.srv.lockTimer.ResetOrCreate(variable.GetNamespacedID(), variable.Lock.TTL, func() { sv.srv.invalidateVariableLock(variable) })
+	return nil
 }

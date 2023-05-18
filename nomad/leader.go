@@ -350,6 +350,10 @@ func (s *Server) establishLeadership(stopCh chan struct{}) error {
 		}
 	}
 
+	if err := s.restoreLockTimers(); err != nil {
+		return err
+	}
+
 	// Activate the vault client
 	s.vault.SetActive(true)
 
@@ -392,6 +396,9 @@ func (s *Server) establishLeadership(stopCh chan struct{}) error {
 
 	// Periodically publish job status metrics
 	go s.publishJobStatusMetrics(stopCh)
+
+	//
+	go s.lockTimer.EmitMetrics(stopCh)
 
 	// Setup the heartbeat timers. This is done both when starting up or when
 	// a leader fail over happens. Since the timers are maintained by the leader
@@ -622,6 +629,57 @@ func (s *Server) restoreEvals() error {
 		}
 	}
 	return nil
+}
+
+func (s *Server) restoreLockTimers() error {
+	// Get an iterator over every evaluation
+	ws := memdb.NewWatchSet()
+	iter, err := s.fsm.State().Variables(ws)
+	if err != nil {
+		return fmt.Errorf("failed to get variables: %v", err)
+	}
+
+	for raw := iter.Next(); raw != nil; raw = iter.Next() {
+		if variable := raw.(*structs.VariableEncrypted); variable.Lock != nil {
+			s.lockTimer.ResetOrCreate(variable.GetID(), variable.Lock.TTL, func() { s.invalidateVariableLock(variable) })
+		}
+	}
+	return nil
+}
+
+func (s *Server) invalidateVariableLock(variable *structs.VariableEncrypted) {
+
+	id := variable.GetNamespacedID()
+
+	// Clear the session timer
+	s.lockTimer.Del(id)
+
+	// Create a session destroy request
+	args := structs.VariablesApplyRequest{
+		Op: structs.VarOpDelete,
+		Var: &structs.VariableDecrypted{
+			VariableMetadata: structs.VariableMetadata{
+				Namespace:   variable.Namespace,
+				Path:        variable.Path,
+				ModifyIndex: variable.ModifyIndex,
+			},
+		},
+		WriteRequest: structs.WriteRequest{},
+	}
+
+	// Retry with exponential backoff to invalidate the session
+	for attempt := uint(0); attempt < 6; attempt++ {
+		// TODO(rpc-metrics-improv): Double check request name here
+		_, _, err := s.raftApply(structs.VarApplyStateRequestType, args)
+		if err == nil {
+			s.logger.Debug("variable lock TTL expired", "variable_path", id)
+			return
+		}
+
+		s.logger.Error("variable lock TTL invalidation failed", "error", err)
+		time.Sleep((1 << attempt) * 10 * time.Second)
+	}
+	s.logger.Error("maximum revoke attempts reached for variable lock TTL invalidation", "error", id)
 }
 
 // revokeVaultAccessorsOnRestore is used to restore Vault accessors that should be
@@ -1326,6 +1384,9 @@ func (s *Server) revokeLeadership() error {
 		s.logger.Error("clearing heartbeat timers failed", "error", err)
 		return err
 	}
+
+	//
+	s.lockTimer.StopAll()
 
 	// Unpause our worker if we paused previously
 	s.handlePausableWorkers(false)

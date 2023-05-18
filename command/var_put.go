@@ -7,6 +7,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/davecgh/go-spew/spew"
 	"io"
 	"os"
 	"path/filepath"
@@ -457,6 +458,7 @@ func parseVariableSpecImpl(result *api.Variable, list *ast.ObjectList) error {
 		"create_time",
 		"modify_time",
 		"items",
+		"lock",
 	}
 	if err := helper.CheckHCLKeys(list, valid); err != nil {
 		return err
@@ -475,14 +477,27 @@ func parseVariableSpecImpl(result *api.Variable, list *ast.ObjectList) error {
 		}
 	}
 
-	for _, index := range []string{"create_time", "modify_time"} {
+	for _, index := range []string{"lock"} {
 		if value, ok := m[index]; ok {
-			vInt, ok := value.(int)
+			vInt, ok := value.([]map[string]interface{})
 			if !ok {
-				return fmt.Errorf("%s must be a int64; got a (%T) %[2]v", index, value)
+				return fmt.Errorf("%s must be integer; got (%T) %[2]v", index, value)
 			}
+
+			for _, index := range []string{"lock_delay"} {
+				if value, ok := vInt[0][index]; ok {
+					stringVal, ok := value.(string)
+					if !ok {
+						return fmt.Errorf("%s must be integer; got (%T) %[2]v", index, value)
+					}
+					n := strings.ReplaceAll(strings.Title(strings.ReplaceAll(index, "_", " ")), " ", "")
+					vInt[0][n] = stringVal
+					delete(m, index)
+				}
+			}
+
 			n := strings.ReplaceAll(strings.Title(strings.ReplaceAll(index, "_", " ")), " ", "")
-			m[n] = vInt
+			m[n] = vInt[0]
 			delete(m, index)
 		}
 	}
@@ -491,6 +506,8 @@ func parseVariableSpecImpl(result *api.Variable, list *ast.ObjectList) error {
 	if err := mapstructure.WeakDecode(m, result); err != nil {
 		return err
 	}
+
+	spew.Dump(result)
 
 	return nil
 }
