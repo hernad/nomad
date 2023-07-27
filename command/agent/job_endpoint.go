@@ -1005,7 +1005,17 @@ func ApiJobToStructJob(job *api.Job) *structs.Job {
 		}
 
 		if job.Periodic.Spec != nil {
-			j.Periodic.Spec = *job.Periodic.Spec
+			switch specs := (job.Periodic.Spec).(type) {
+			case string:
+				j.Periodic.Spec = []string{specs}
+			case []string:
+				j.Periodic.Spec = specs
+			case []any:
+				j.Periodic.Spec = make([]string, len(specs))
+				for i, spec := range specs {
+					j.Periodic.Spec[i] = fmt.Sprintf("%v", spec)
+				}
+			}
 		}
 	}
 

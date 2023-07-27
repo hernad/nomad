@@ -146,9 +146,10 @@ func (c *jobConfig) parseLocalVariables(content *hcl.BodyContent) hcl.Diagnostic
 func (c *jobConfig) decodeTopLevelExtras(content *hcl.BodyContent, ctx *hcl.EvalContext) hcl.Diagnostics {
 	var diags hcl.Diagnostics
 
-	var foundVault *hcl.Block
+	var foundVault, foundPeriodic *hcl.Block
 	for _, b := range content.Blocks {
-		if b.Type == vaultLabel {
+		switch b.Type {
+		case vaultLabel:
 			if foundVault != nil {
 				diags = append(diags, &hcl.Diagnostic{
 					Severity: hcl.DiagError,
@@ -167,17 +168,62 @@ func (c *jobConfig) decodeTopLevelExtras(content *hcl.BodyContent, ctx *hcl.Eval
 			diags = append(diags, hclDecoder.DecodeBody(b.Body, ctx, v)...)
 			c.Vault = v
 
-		} else if b.Type == taskLabel {
+		case taskLabel:
 			t := &api.Task{}
 			diags = append(diags, hclDecoder.DecodeBody(b.Body, ctx, t)...)
 			if len(b.Labels) == 1 {
 				t.Name = b.Labels[0]
 				c.Tasks = append(c.Tasks, t)
 			}
+		case "periodic":
+			if foundPeriodic != nil {
+				diags = append(diags, &hcl.Diagnostic{
+					Severity: hcl.DiagError,
+					Summary:  fmt.Sprintf("Duplicate %s block", b.Type),
+					Detail: fmt.Sprintf(
+						"Only one block of type %q is allowed. Previous definition was at %s.",
+						b.Type, foundPeriodic.DefRange.String(),
+					),
+					Subject: &b.DefRange,
+				})
+				continue
+			}
+			foundPeriodic = b
+
+			// Parse periodic block.
+			p := &api.PeriodicConfig{}
+			diags = append(diags, hclDecoder.DecodeBody(b.Body, ctx, p)...)
+			diags = append(diags, decodePeriodicCron(p, ctx)...)
+			c.Job.Periodic = p
 		}
 	}
 
 	return diags
+}
+
+func decodePeriodicCron(p *api.PeriodicConfig, ctx *hcl.EvalContext) hcl.Diagnostics {
+	specAttr, ok := p.Spec.(*hcl.Attribute)
+	if !ok {
+		p.Spec = []string{}
+		return nil
+	}
+
+	// Try to parse cron as a string.
+	var spec string
+	diag := hclDecoder.DecodeExpression(specAttr.Expr, ctx, &spec)
+	if !diag.HasErrors() {
+		p.Spec = []string{spec}
+		return nil
+	}
+
+	specs := []string{}
+	diag = hclDecoder.DecodeExpression(specAttr.Expr, ctx, &specs)
+	if diag.HasErrors() {
+		return diag
+	}
+
+	p.Spec = specs
+	return nil
 }
 
 func (c *jobConfig) evaluateLocalVariables(locals []*LocalBlock) hcl.Diagnostics {
@@ -276,6 +322,7 @@ func (c *jobConfig) decodeJob(content *hcl.BodyContent, ctx *hcl.EvalContext) hc
 
 		extra, remain, mdiags := body.PartialContent(&hcl.BodySchema{
 			Blocks: []hcl.BlockHeaderSchema{
+				{Type: "periodic"},
 				{Type: "vault"},
 				{Type: "task", LabelNames: []string{"name"}},
 			},

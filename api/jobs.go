@@ -821,8 +821,8 @@ type MultiregionRegion struct {
 
 // PeriodicConfig is for serializing periodic config for a job.
 type PeriodicConfig struct {
-	Enabled         *bool   `hcl:"enabled,optional"`
-	Spec            *string `hcl:"cron,optional"`
+	Enabled         *bool `hcl:"enabled,optional"`
+	Spec            any   `hcl:"cron,optional"`
 	SpecType        *string
 	ProhibitOverlap *bool   `mapstructure:"prohibit_overlap" hcl:"prohibit_overlap,optional"`
 	TimeZone        *string `mapstructure:"time_zone" hcl:"time_zone,optional"`
@@ -833,7 +833,7 @@ func (p *PeriodicConfig) Canonicalize() {
 		p.Enabled = pointerOf(true)
 	}
 	if p.Spec == nil {
-		p.Spec = pointerOf("")
+		p.Spec = []string{}
 	}
 	if p.SpecType == nil {
 		p.SpecType = pointerOf(PeriodicSpecCron)
@@ -851,22 +851,36 @@ func (p *PeriodicConfig) Canonicalize() {
 // returned. The `time.Location` of the returned value matches that of the
 // passed time.
 func (p *PeriodicConfig) Next(fromTime time.Time) (time.Time, error) {
-	if p != nil && *p.SpecType == PeriodicSpecCron {
-		e, err := cronexpr.Parse(*p.Spec)
-		if err != nil {
-			return time.Time{}, fmt.Errorf("failed parsing cron expression %q: %v", *p.Spec, err)
-		}
-		return cronParseNext(e, fromTime, *p.Spec)
+	if p == nil || *p.SpecType != PeriodicSpecCron {
+		return time.Time{}, nil
 	}
 
-	return time.Time{}, nil
+	// Cron spec parsing.
+	switch specs := (p.Spec).(type) {
+	case string:
+		return cronParseNext(fromTime, specs)
+	case []string:
+		var nextTime time.Time
+		for _, spec := range specs {
+			t, err := cronParseNext(fromTime, spec)
+			if err != nil {
+				return time.Time{}, fmt.Errorf("failed parsing cron expression %s: %v", spec, err)
+			}
+			if nextTime.IsZero() || t.Before(nextTime) {
+				nextTime = t
+			}
+		}
+		return nextTime, nil
+	}
+
+	return time.Time{}, fmt.Errorf("invalid cron type, expected string or list of string, received %T", p.Spec)
 }
 
 // cronParseNext is a helper that parses the next time for the given expression
 // but captures any panic that may occur in the underlying library.
 // ---  THIS FUNCTION IS REPLICATED IN nomad/structs/structs.go
 // and should be kept in sync.
-func cronParseNext(e *cronexpr.Expression, fromTime time.Time, spec string) (t time.Time, err error) {
+func cronParseNext(fromTime time.Time, spec string) (t time.Time, err error) {
 	defer func() {
 		if recover() != nil {
 			t = time.Time{}
@@ -874,6 +888,10 @@ func cronParseNext(e *cronexpr.Expression, fromTime time.Time, spec string) (t t
 		}
 	}()
 
+	e, err := cronexpr.Parse(spec)
+	if err != nil {
+		return time.Time{}, fmt.Errorf("failed parsing cron expression: %s: %v", spec, err)
+	}
 	return e.Next(fromTime), nil
 }
 

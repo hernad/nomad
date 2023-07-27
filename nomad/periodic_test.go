@@ -116,7 +116,7 @@ func testPeriodicJob(times ...time.Time) *structs.Job {
 		l[i] = strconv.Itoa(int(t.Round(1 * time.Second).Unix()))
 	}
 
-	job.Periodic.Spec = strings.Join(l, ",")
+	job.Periodic.Spec = l
 	return job
 }
 

@@ -20,8 +20,7 @@ func normalizeJob(jc *jobConfig) {
 	}
 
 	if j.Periodic != nil && j.Periodic.Spec != nil {
-		v := "cron"
-		j.Periodic.SpecType = &v
+		j.Periodic.SpecType = pointer.Of("cron")
 	}
 
 	normalizeVault(jc.Vault)

@@ -252,7 +252,20 @@ func parsePeriodic(result **api.PeriodicConfig, list *ast.ObjectList) error {
 	// If "cron" is provided, set the type to "cron" and store the spec.
 	if cron, ok := m["cron"]; ok {
 		m["SpecType"] = api.PeriodicSpecCron
-		m["Spec"] = cron
+		switch c := cron.(type) {
+		case string:
+			m["Spec"] = []string{c}
+		case []string:
+			m["Spec"] = c
+		case []any:
+			crons := make([]string, len(c))
+			for i, cc := range c {
+				crons[i] = fmt.Sprintf("%s", cc)
+			}
+			m["Spec"] = crons
+		default:
+			return fmt.Errorf("invalid type %T for cron", cron)
+		}
 	}
 
 	// Build the constraint

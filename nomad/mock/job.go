@@ -478,7 +478,7 @@ func PeriodicJob() *structs.Job {
 	job.Periodic = &structs.PeriodicConfig{
 		Enabled:  true,
 		SpecType: structs.PeriodicSpecCron,
-		Spec:     "*/30 * * * *",
+		Spec:     []string{"*/30 * * * *"},
 	}
 	job.Status = structs.JobStatusRunning
 	job.TaskGroups[0].Migrate = nil
