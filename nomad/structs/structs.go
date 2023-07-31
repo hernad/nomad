@@ -27,7 +27,7 @@ import (
 	"strings"
 	"time"
 
-	jwt "github.com/golang-jwt/jwt/v5"
+	jwt "github.com/go-jose/go-jose/v3/jwt"
 	"github.com/hashicorp/cronexpr"
 	"github.com/hashicorp/go-msgpack/codec"
 	"github.com/hashicorp/go-multierror"
@@ -1680,9 +1680,14 @@ type SingleAllocResponse struct {
 	QueryMeta
 }
 
-// AllocsGetResponse is used to return a set of allocations
+// AllocsGetResponse is used to return a set of allocations and their workload
+// identities.
 type AllocsGetResponse struct {
 	Allocs []*Allocation
+
+	// SignedIdentities are the alternate workload identities for the Allocs.
+	SignedIdentities []SignedWorkloadIdentity
+
 	QueryMeta
 }
 
@@ -7490,9 +7495,12 @@ type Task struct {
 	// CSIPluginConfig is used to configure the plugin supervisor for the task.
 	CSIPluginConfig *TaskCSIPluginConfig
 
-	// Identity controls if and how the workload identity is exposed to
-	// tasks similar to the Vault block.
+	// Identity is the default Nomad Workload Identity.
 	Identity *WorkloadIdentity
+
+	// Identities are the alternate workload identities for use with 3rd party
+	// endpoints.
+	Identities []*WorkloadIdentity
 }
 
 // UsesConnect is for conveniently detecting if the Task is able to make use
@@ -7554,6 +7562,7 @@ func (t *Task) Copy() *Task {
 	nt.DispatchPayload = nt.DispatchPayload.Copy()
 	nt.Lifecycle = nt.Lifecycle.Copy()
 	nt.Identity = nt.Identity.Copy()
+	nt.Identities = helper.CopySlice(nt.Identities)
 
 	if t.Artifacts != nil {
 		artifacts := make([]*TaskArtifact, 0, len(t.Artifacts))
@@ -7620,6 +7629,16 @@ func (t *Task) Canonicalize(job *Job, tg *TaskGroup) {
 
 	for _, template := range t.Templates {
 		template.Canonicalize()
+	}
+
+	// Initialize default Nomad workload identity
+	if t.Identity == nil {
+		t.Identity = &WorkloadIdentity{}
+	}
+	t.Identity.Canonicalize()
+
+	for _, wid := range t.Identities {
+		wid.Canonicalize()
 	}
 }
 
@@ -11100,19 +11119,15 @@ func (a *Allocation) NeedsToReconnect() bool {
 	return disconnected
 }
 
-func (a *Allocation) ToIdentityClaims(job *Job) *IdentityClaims {
-	now := jwt.NewNumericDate(time.Now().UTC())
+func (a *Allocation) ToIdentityClaims(job *Job, now time.Time) *IdentityClaims {
+	jwtnow := jwt.NewNumericDate(now.UTC())
 	claims := &IdentityClaims{
 		Namespace:    a.Namespace,
 		JobID:        a.JobID,
 		AllocationID: a.ID,
-		RegisteredClaims: jwt.RegisteredClaims{
-			// TODO: implement a refresh loop to prevent allocation identities from
-			// expiring before the allocation is terminal. Once that's implemented,
-			// add an ExpiresAt here ExpiresAt: &jwt.NumericDate{}
-			// https://github.com/hashicorp/nomad/issues/16258
-			NotBefore: now,
-			IssuedAt:  now,
+		Claims: jwt.Claims{
+			NotBefore: jwtnow,
+			IssuedAt:  jwtnow,
 		},
 	}
 	if job != nil && job.ParentID != "" {
@@ -11121,11 +11136,25 @@ func (a *Allocation) ToIdentityClaims(job *Job) *IdentityClaims {
 	return claims
 }
 
-func (a *Allocation) ToTaskIdentityClaims(job *Job, taskName string) *IdentityClaims {
-	claims := a.ToIdentityClaims(job)
-	if claims != nil {
-		claims.TaskName = taskName
+func (a *Allocation) ToTaskIdentityClaims(job *Job, taskName string, wid *WorkloadIdentity, now time.Time) *IdentityClaims {
+	tg := job.LookupTaskGroup(a.TaskGroup)
+	if tg == nil {
+		return nil
 	}
+
+	claims := a.ToIdentityClaims(job, now)
+	if claims == nil {
+		return nil
+	}
+
+	claims.TaskName = taskName
+	claims.Audience = wid.Audience
+	claims.SetSubject(job, a.TaskGroup, taskName, wid.Name)
+
+	//TODO(schmichael) if we want this to be deterministic we could hash the
+	//inputs (including `now`), but I don't think there's a point
+	claims.ID = uuid.Generate()
+
 	return claims
 }
 
@@ -11137,7 +11166,19 @@ type IdentityClaims struct {
 	AllocationID string `json:"nomad_allocation_id"`
 	TaskName     string `json:"nomad_task"`
 
-	jwt.RegisteredClaims
+	jwt.Claims
+}
+
+// SetSubject creates the standard subject claim for workload identities.
+func (claims *IdentityClaims) SetSubject(job *Job, group, task, id string) {
+	claims.Subject = strings.Join([]string{
+		job.Region,
+		job.Namespace,
+		job.ID,
+		group,
+		task,
+		id,
+	}, ":")
 }
 
 // AllocationDiff is another named type for Allocation (to use the same fields),

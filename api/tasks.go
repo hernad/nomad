@@ -723,7 +723,15 @@ type Task struct {
 	KillSignal      string                 `mapstructure:"kill_signal" hcl:"kill_signal,optional"`
 	Kind            string                 `hcl:"kind,optional"`
 	ScalingPolicies []*ScalingPolicy       `hcl:"scaling,block"`
-	Identity        *WorkloadIdentity      `hcl:"identity,block"`
+
+	// Identity is the default Nomad Workload Identity and will be added to
+	// Identities with the name "default"
+	//
+	// Deprecated: Use Identities instead
+	Identity *WorkloadIdentity
+
+	// Workload Identities
+	Identities []*WorkloadIdentity `hcl:"identity,block"`
 }
 
 func (t *Task) Canonicalize(tg *TaskGroup, job *Job) {
@@ -771,6 +779,10 @@ func (t *Task) Canonicalize(tg *TaskGroup, job *Job) {
 		*tgrp = *tg.RestartPolicy
 		tgrp.Merge(t.RestartPolicy)
 		t.RestartPolicy = tgrp
+	}
+	//TODO(schmichael) canonicalize default nomad identity or let the server?
+	for _, wid := range t.Identities {
+		wid.Canonicalize()
 	}
 }
 
@@ -1145,6 +1157,15 @@ func (t *TaskCSIPluginConfig) Canonicalize() {
 // WorkloadIdentity is the jobspec block which determines if and how a workload
 // identity is exposed to tasks.
 type WorkloadIdentity struct {
-	Env  bool `hcl:"env,optional"`
-	File bool `hcl:"file,optional"`
+	Name       string        `hcl:"name,optional"`
+	Audiences  []string      `mapstructure:"aud" hcl:"aud,optional"`
+	Env        bool          `hcl:"env,optional"`
+	File       bool          `hcl:"file,optional"`
+}
+
+func (wi *WorkloadIdentity) Canonicalize() {
+	// If no audience is set, use the block name.
+	if len(wi.Audiences) == 0 {
+		wi.Audiences = []string{wi.Name}
+	}
 }
