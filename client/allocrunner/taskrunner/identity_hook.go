@@ -64,7 +64,7 @@ func (h *identityHook) Prestart(ctx context.Context, req *interfaces.TaskPrestar
 		}
 
 		if err := h.setAltToken(widspec, signedWID.JWT); err != nil {
-			return nil
+			return err
 		}
 	}
 
