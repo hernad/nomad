@@ -7632,14 +7632,28 @@ func (t *Task) Canonicalize(job *Job, tg *TaskGroup) {
 	}
 
 	// Initialize default Nomad workload identity
+	defaultIdx := -1
+	for i, wid := range t.Identities {
+		wid.Canonicalize()
+
+		// For backward compatibility put the default identity in Task.Identity.
+		if wid.Name == WorkloadIdentityDefaultName {
+			t.Identity = wid
+			defaultIdx = i
+		}
+	}
+
+	// If the default identity was found in Identities above, remove it from the
+	// slice.
+	if defaultIdx >= 0 {
+		slices.Delete(t.Identities, defaultIdx, defaultIdx+1)
+	}
+
+	// If there was no default identity, always create one.
 	if t.Identity == nil {
 		t.Identity = &WorkloadIdentity{}
 	}
 	t.Identity.Canonicalize()
-
-	for _, wid := range t.Identities {
-		wid.Canonicalize()
-	}
 }
 
 func (t *Task) GoString() string {
@@ -7817,6 +7831,19 @@ func (t *Task) Validate(jobType string, tg *TaskGroup) error {
 		}
 
 		// TODO: Investigate validation of the PluginMountDir. Not much we can do apart from check IsAbs until after we understand its execution environment though :(
+	}
+
+	// Validate Identity/Identities
+	for _, wid := range t.Identities {
+		// Task.Canonicalize should move the default identity out of the Identities
+		// slice, so if one is found that means it is a duplicate.
+		if wid.Name == WorkloadIdentityDefaultName {
+			mErr.Errors = append(mErr.Errors, fmt.Errorf("Duplicate default identities found"))
+		}
+
+		if err := wid.Validate(); err != nil {
+			mErr.Errors = append(mErr.Errors, fmt.Errorf("Identity %q is invalid: %w", wid.Name, err))
+		}
 	}
 
 	return mErr.ErrorOrNil()

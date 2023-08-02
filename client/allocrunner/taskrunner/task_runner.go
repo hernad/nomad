@@ -36,6 +36,7 @@ import (
 	cstructs "github.com/hashicorp/nomad/client/structs"
 	"github.com/hashicorp/nomad/client/taskenv"
 	"github.com/hashicorp/nomad/client/vaultclient"
+	"github.com/hashicorp/nomad/client/widmgr"
 	"github.com/hashicorp/nomad/helper"
 	"github.com/hashicorp/nomad/helper/pluginutils/hclspecutils"
 	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
@@ -266,6 +267,9 @@ type TaskRunner struct {
 
 	// getter is an interface for retrieving artifacts.
 	getter cinterfaces.ArtifactGetter
+
+	// widmgr fetches workload identities
+	widmgr *widmgr.WIDMgr
 }
 
 type Config struct {
@@ -338,6 +342,9 @@ type Config struct {
 	// AllocHookResources is how taskrunner hooks can get state written by
 	// allocrunner hooks
 	AllocHookResources *cstructs.AllocHookResources
+
+	// WIDMgr fetches workload identities
+	WIDMgr *widmgr.WIDMgr
 }
 
 func NewTaskRunner(config *Config) (*TaskRunner, error) {
@@ -399,6 +406,7 @@ func NewTaskRunner(config *Config) (*TaskRunner, error) {
 		shutdownDelayCancelFn:  config.ShutdownDelayCancelFn,
 		serviceRegWrapper:      config.ServiceRegWrapper,
 		getter:                 config.Getter,
+		widmgr:                 config.WIDMgr,
 	}
 
 	// Create the logger based on the allocation ID

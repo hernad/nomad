@@ -45,6 +45,7 @@ import (
 	"github.com/hashicorp/nomad/client/stats"
 	cstructs "github.com/hashicorp/nomad/client/structs"
 	"github.com/hashicorp/nomad/client/vaultclient"
+	"github.com/hashicorp/nomad/client/widmgr"
 	"github.com/hashicorp/nomad/command/agent/consul"
 	"github.com/hashicorp/nomad/helper"
 	"github.com/hashicorp/nomad/helper/envoy"
@@ -323,6 +324,9 @@ type Client struct {
 
 	// getter is an interface for retrieving artifacts.
 	getter cinterfaces.ArtifactGetter
+
+	// widmgr retrieves workload identities
+	widmgr *widmgr.WIDMgr
 }
 
 var (
@@ -431,6 +435,13 @@ func NewClient(cfg *config.Config, consulCatalog consul.CatalogAPI, consulProxie
 	if err := c.setupNode(); err != nil {
 		return nil, fmt.Errorf("node setup failed: %v", err)
 	}
+
+	// Add workload identity manager after node secret has been generated/loaded
+	c.widmgr = widmgr.New(widmgr.Config{
+		NodeSecret: c.secretNodeID(),
+		Region:     cfg.Region,
+		RPC:        c,
+	})
 
 	c.fingerprintManager = NewFingerprintManager(
 		cfg.PluginSingletonLoader, c.GetConfig, cfg.Node,
@@ -1233,6 +1244,7 @@ func (c *Client) restoreState() error {
 			CheckStore:          c.checkStore,
 			RPCClient:           c,
 			Getter:              c.getter,
+			WIDMgr:              c.widmgr,
 		}
 
 		ar, err := c.allocrunnerFactory(arConf)
@@ -2708,6 +2720,7 @@ func (c *Client) addAlloc(alloc *structs.Allocation, migrateToken string) error 
 		CheckStore:          c.checkStore,
 		RPCClient:           c,
 		Getter:              c.getter,
+		WIDMgr:              c.widmgr,
 	}
 
 	ar, err := c.allocrunnerFactory(arConf)

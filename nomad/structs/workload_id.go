@@ -4,6 +4,7 @@
 package structs
 
 import (
+	"fmt"
 	"time"
 
 	"golang.org/x/exp/slices"
@@ -54,8 +55,10 @@ func (wi *WorkloadIdentity) Copy() *WorkloadIdentity {
 		return nil
 	}
 	return &WorkloadIdentity{
-		Env:  wi.Env,
-		File: wi.File,
+		Name:     wi.Name,
+		Audience: slices.Clone(wi.Audience),
+		Env:      wi.Env,
+		File:     wi.File,
 	}
 }
 
@@ -103,6 +106,25 @@ func (wi *WorkloadIdentity) Canonicalize() {
 	}
 }
 
+func (wi *WorkloadIdentity) Validate() error {
+	if wi == nil {
+		return fmt.Errorf("must not be nil")
+	}
+
+	if wi.Name == "" {
+		// Bug: Canonicalize should have prevented this.
+		return fmt.Errorf("must have name")
+	}
+
+	for _, aud := range wi.Audience {
+		if aud == "" {
+			return fmt.Errorf("an empty string is an invalid audience")
+		}
+	}
+
+	return nil
+}
+
 // WorkloadIdentityRequest encapsulates the 3 parameters used to generated a
 // signed workload identity: the alloc, task, and specific identity's name.
 type WorkloadIdentityRequest struct {
@@ -129,14 +151,14 @@ type WorkloadIdentityRejection struct {
 // AllocIdentitiesRequest is the RPC arguments for requesting signed workload
 // identities.
 type AllocIdentitiesRequest struct {
-	Identities []WorkloadIdentityRequest
+	Identities []*WorkloadIdentityRequest
 	QueryOptions
 }
 
 // AllocIdentitiesResponse is the RPC response for requested workload
 // identities including any rejections.
 type AllocIdentitiesResponse struct {
-	SignedIdentities []SignedWorkloadIdentity
-	Rejections       []WorkloadIdentityRejection
+	SignedIdentities []*SignedWorkloadIdentity
+	Rejections       []*WorkloadIdentityRejection
 	QueryMeta
 }

@@ -445,3 +445,138 @@ func (a *Alloc) GetServiceRegistrations(
 		},
 	})
 }
+
+// GetIdentities allows nodes to retrieve workload identities for their
+// allocations.
+//
+// This is an internal-only RPC and not exposed via the HTTP API.
+func (a *Alloc) GetIdentities(args *structs.AllocIdentitiesRequest, reply *structs.AllocIdentitiesResponse) error {
+
+	authErr := a.srv.Authenticate(a.ctx, args)
+
+	// Ensure the connection was initiated by a client if TLS is used.
+	if err := validateTLSCertificateLevel(a.srv, a.ctx, tlsCertificateLevelClient); err != nil {
+		return err
+	}
+	if done, err := a.srv.forward("Alloc.GetIdentities", args, args, reply); done {
+		return err
+	}
+	a.srv.MeasureRPCRate("alloc", structs.RateMetricRead, args)
+	if authErr != nil {
+		return structs.ErrPermissionDenied
+	}
+
+	defer metrics.MeasureSince([]string{"nomad", "alloc", "get_identities"}, time.Now())
+
+	if len(args.Identities) == 0 {
+		// Client bug
+		return fmt.Errorf("no identities requested")
+	}
+
+	opts := blockingOptions{
+		queryOpts: &args.QueryOptions,
+		queryMeta: &reply.QueryMeta,
+		run: func(ws memdb.WatchSet, state *state.StateStore) error {
+			// Lookup the allocations
+			thresholdMet := false
+			for _, idReq := range args.Identities {
+				out, err := state.AllocByID(ws, idReq.AllocID)
+				if err != nil {
+					return err
+				}
+
+				if out == nil {
+					// Alloc may have been GC'd and therefore should not be able to get
+					// new identities.
+					continue
+				}
+
+				if out.ModifyIndex > args.QueryOptions.MinQueryIndex {
+					thresholdMet = true
+					break
+				}
+				a.logger.Debug("threshold not met", "min", args.QueryOptions.MinQueryIndex, "max", out.ModifyIndex)
+			}
+
+			// If we could not find an alloc updated after the desired index, note
+			// the index allocs were last updated.
+			if !thresholdMet {
+				index, err := state.Index("allocs")
+				if err != nil {
+					return err
+				}
+				reply.Index = index
+				return nil
+			}
+
+			// Threshold met, so create the response
+			now := time.Now().UTC()
+			maxIndex := uint64(0)
+			for _, idReq := range args.Identities {
+				out, err := state.AllocByID(ws, idReq.AllocID)
+				if err != nil {
+					return err
+				}
+
+				if out == nil {
+					// Alloc may have been GC'd and therefore should not be able to get
+					// new identities.
+					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+						WorkloadIdentityRequest: *idReq,
+						Reason:                  structs.WIRejectionReasonMissingAlloc,
+					})
+					continue
+				}
+
+				task := out.LookupTask(idReq.TaskName)
+				if task == nil {
+					// Job has likely been updated to remove this task
+					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+						WorkloadIdentityRequest: *idReq,
+						Reason:                  structs.WIRejectionReasonMissingTask,
+					})
+					continue
+				}
+
+				//TODO(schmichael) do we need backward compat code for Task.Identity
+				//when IdentityName=="default"? I don't think so since this RPC will
+				//only be called by 1.6 clients
+
+				widFound := false
+				for _, wid := range task.Identities {
+					if wid.Name != idReq.IdentityName {
+						continue
+					}
+
+					widFound = true
+					claims := out.ToTaskIdentityClaims(out.Job, idReq.TaskName, wid, now)
+					token, _, err := a.srv.encrypter.SignClaims(claims)
+					if err != nil {
+						return err
+					}
+					reply.SignedIdentities = append(reply.SignedIdentities, &structs.SignedWorkloadIdentity{
+						WorkloadIdentityRequest: *idReq,
+						JWT:                     token,
+						Exp:                     claims.Expiry.Time(),
+					})
+					break
+				}
+
+				if !widFound {
+					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+						WorkloadIdentityRequest: *idReq,
+						Reason:                  structs.WIRejectionReasonMissingIdentity,
+					})
+					continue
+				}
+
+				if maxIndex < out.ModifyIndex {
+					maxIndex = out.ModifyIndex
+				}
+			}
+
+			reply.Index = maxIndex
+			return nil
+		}}
+	return a.srv.blockingRPC(&opts)
+}
