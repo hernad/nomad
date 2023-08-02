@@ -429,7 +429,7 @@ type Builder struct {
 	vaultNamespace       string
 	injectVaultToken     bool
 	workloadTokenDefault string
-	workloadTokens       map[string]string
+	workloadTokens       map[string]string // identity name -> encoded JWT
 	jobID                string
 	jobName              string
 	jobParentID          string
