@@ -10,7 +10,7 @@ import (
 )
 
 type RPCer interface {
-	RPC(method string, args interface{}, reply interface{}) error
+	RPC(method string, args any, reply any) error
 }
 
 // Config wraps the configuration parameters the workload identity manager
