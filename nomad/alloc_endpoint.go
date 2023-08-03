@@ -446,11 +446,11 @@ func (a *Alloc) GetServiceRegistrations(
 	})
 }
 
-// GetIdentities allows nodes to retrieve workload identities for their
+// SignIdentities allows nodes to retrieve workload identities for their
 // allocations.
 //
 // This is an internal-only RPC and not exposed via the HTTP API.
-func (a *Alloc) GetIdentities(args *structs.AllocIdentitiesRequest, reply *structs.AllocIdentitiesResponse) error {
+func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *structs.AllocIdentitiesResponse) error {
 
 	authErr := a.srv.Authenticate(a.ctx, args)
 
@@ -458,7 +458,7 @@ func (a *Alloc) GetIdentities(args *structs.AllocIdentitiesRequest, reply *struc
 	if err := validateTLSCertificateLevel(a.srv, a.ctx, tlsCertificateLevelClient); err != nil {
 		return err
 	}
-	if done, err := a.srv.forward("Alloc.GetIdentities", args, args, reply); done {
+	if done, err := a.srv.forward("Alloc.SignIdentities", args, args, reply); done {
 		return err
 	}
 	a.srv.MeasureRPCRate("alloc", structs.RateMetricRead, args)
@@ -466,7 +466,7 @@ func (a *Alloc) GetIdentities(args *structs.AllocIdentitiesRequest, reply *struc
 		return structs.ErrPermissionDenied
 	}
 
-	defer metrics.MeasureSince([]string{"nomad", "alloc", "get_identities"}, time.Now())
+	defer metrics.MeasureSince([]string{"nomad", "alloc", "sign_identities"}, time.Now())
 
 	if len(args.Identities) == 0 {
 		// Client bug

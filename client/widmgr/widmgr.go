@@ -41,12 +41,12 @@ func New(c Config) *WIDMgr {
 	}
 }
 
-// GetIdentities wraps the Alloc.GetIdentities RPC and retrieves signed
+// SignIdentities wraps the Alloc.SignIdentities RPC and retrieves signed
 // workload identities. The minIndex should be set to the lowest allocation
 // CreateIndex to ensure that the server handling the request isn't so stale
 // that it doesn't know the allocation exist (and therefore rejects the signing
 // requests).
-func (m *WIDMgr) GetIdentities(minIndex uint64, req []*structs.WorkloadIdentityRequest) ([]*structs.SignedWorkloadIdentity, error) {
+func (m *WIDMgr) SignIdentities(minIndex uint64, req []*structs.WorkloadIdentityRequest) ([]*structs.SignedWorkloadIdentity, error) {
 	args := structs.AllocIdentitiesRequest{
 		Identities: req,
 		QueryOptions: structs.QueryOptions{
@@ -57,7 +57,7 @@ func (m *WIDMgr) GetIdentities(minIndex uint64, req []*structs.WorkloadIdentityR
 		},
 	}
 	reply := structs.AllocIdentitiesResponse{}
-	if err := m.rpc.RPC("Alloc.GetIdentities", &args, &reply); err != nil {
+	if err := m.rpc.RPC("Alloc.SignIdentities", &args, &reply); err != nil {
 		return nil, err
 	}
 
