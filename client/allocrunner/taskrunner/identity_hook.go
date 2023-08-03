@@ -113,7 +113,14 @@ func (h *identityHook) setAltToken(widspec *structs.WorkloadIdentity, rawJWT str
 	return nil
 }
 
+// getIdentities calls Alloc.GetIdentities to get all of the identities for
+// this workload signed. If there are no identities to be signed then (nil,
+// nil) is returned.
 func (h *identityHook) getIdentities(alloc *structs.Allocation, task *structs.Task) (map[string]*structs.SignedWorkloadIdentity, error) {
+
+	if len(task.Identities) == 0 {
+		return nil, nil
+	}
 
 	req := make([]*structs.WorkloadIdentityRequest, len(task.Identities))
 	for i, widspec := range task.Identities {
