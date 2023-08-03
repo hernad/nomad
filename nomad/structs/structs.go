@@ -8020,6 +8020,13 @@ func (t *Task) Warnings() error {
 		}
 	}
 
+	for _, wid := range t.Identities {
+		if err := wid.Warnings(); err != nil {
+			err = multierror.Prefix(err, fmt.Sprintf("Identity[%s]", wid.Name))
+			mErr.Errors = append(mErr.Errors, err)
+		}
+	}
+
 	return mErr.ErrorOrNil()
 }
 

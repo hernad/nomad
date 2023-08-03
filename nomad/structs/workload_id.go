@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/hashicorp/go-multierror"
 	"golang.org/x/exp/slices"
 )
 
@@ -30,6 +31,14 @@ const (
 	// WIRejectionReasonMissingIdentity is the WorkloadIdentityRejection.Reason
 	// returned when the requested identity does not exist on the allocation.
 	WIRejectionReasonMissingIdentity = "identity not found"
+)
+
+var (
+	// validIdentityName is used to validate workload identity Name fields. Must
+	// be safe to use in filenames.
+	//
+	// Reuse validNamespaceName to save a bit of memory.
+	validIdentityName = validNamespaceName
 )
 
 // WorkloadIdentity is the jobspec block which determines if and how a workload
@@ -99,11 +108,6 @@ func (wi *WorkloadIdentity) Canonicalize() {
 	if wi.Name == WorkloadIdentityDefaultName {
 		wi.Audience = []string{WorkloadIdentityDefaultAud}
 	}
-
-	// If no audience is set, use the block name.
-	if len(wi.Audience) == 0 {
-		wi.Audience = []string{wi.Name}
-	}
 }
 
 func (wi *WorkloadIdentity) Validate() error {
@@ -111,15 +115,31 @@ func (wi *WorkloadIdentity) Validate() error {
 		return fmt.Errorf("must not be nil")
 	}
 
-	if wi.Name == "" {
-		// Bug: Canonicalize should have prevented this.
-		return fmt.Errorf("must have name")
+	var mErr multierror.Error
+
+	if !validIdentityName.MatchString(wi.Name) {
+		err := fmt.Errorf("invalid name %q. Must match regex %s", wi.Name, validIdentityName)
+		mErr.Errors = append(mErr.Errors, err)
 	}
 
-	for _, aud := range wi.Audience {
+	for i, aud := range wi.Audience {
 		if aud == "" {
-			return fmt.Errorf("an empty string is an invalid audience")
+			mErr.Errors = append(mErr.Errors, fmt.Errorf("an empty string is an invalid audience (%d)", i+1))
 		}
+	}
+
+	return mErr.ErrorOrNil()
+}
+
+func (wi *WorkloadIdentity) Warnings() error {
+	if wi == nil {
+		return fmt.Errorf("must not be nil")
+	}
+
+	if n := len(wi.Audience); n == 0 {
+		return fmt.Errorf("identities without an audience are insecure")
+	} else if n > 1 {
+		return fmt.Errorf("while multiple audiences is allowed, it is more secure to use 1 audience per identity")
 	}
 
 	return nil
