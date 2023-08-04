@@ -11153,45 +11153,6 @@ func (a *Allocation) NeedsToReconnect() bool {
 	return disconnected
 }
 
-func (a *Allocation) ToIdentityClaims(job *Job, now time.Time) *IdentityClaims {
-	jwtnow := jwt.NewNumericDate(now.UTC())
-	claims := &IdentityClaims{
-		Namespace:    a.Namespace,
-		JobID:        a.JobID,
-		AllocationID: a.ID,
-		Claims: jwt.Claims{
-			NotBefore: jwtnow,
-			IssuedAt:  jwtnow,
-		},
-	}
-	if job != nil && job.ParentID != "" {
-		claims.JobID = job.ParentID
-	}
-	return claims
-}
-
-func (a *Allocation) ToTaskIdentityClaims(job *Job, taskName string, wid *WorkloadIdentity, now time.Time) *IdentityClaims {
-	tg := job.LookupTaskGroup(a.TaskGroup)
-	if tg == nil {
-		return nil
-	}
-
-	claims := a.ToIdentityClaims(job, now)
-	if claims == nil {
-		return nil
-	}
-
-	claims.TaskName = taskName
-	claims.Audience = wid.Audience
-	claims.SetSubject(job, a.TaskGroup, taskName, wid.Name)
-
-	//TODO(schmichael) if we want this to be deterministic we could hash the
-	//inputs (including `now`), but I don't think there's a point
-	claims.ID = uuid.Generate()
-
-	return claims
-}
-
 // IdentityClaims are the input to a JWT identifying a workload. It
 // should never be serialized to msgpack unsigned.
 type IdentityClaims struct {
@@ -11201,6 +11162,43 @@ type IdentityClaims struct {
 	TaskName     string `json:"nomad_task"`
 
 	jwt.Claims
+}
+
+// NewIdentityClaims returns new workload identity claims. Since it may be
+// called with a denormalized Allocation, the Job must be passed in distinctly.
+//
+// ID claim is random (nondeterministic) so multiple calls with the same values
+// will not return equal claims by design. JWT IDs should never collide.
+func NewIdentityClaims(job *Job, alloc *Allocation, taskName string, wid *WorkloadIdentity, now time.Time) *IdentityClaims {
+
+	tg := job.LookupTaskGroup(alloc.TaskGroup)
+	if tg == nil {
+		return nil
+	}
+
+	jwtnow := jwt.NewNumericDate(now.UTC())
+	claims := &IdentityClaims{
+		Namespace:    alloc.Namespace,
+		JobID:        alloc.JobID,
+		AllocationID: alloc.ID,
+		Claims: jwt.Claims{
+			NotBefore: jwtnow,
+			IssuedAt:  jwtnow,
+		},
+	}
+
+	// If this is a child job, use the parent's ID
+	if job.ParentID != "" {
+		claims.JobID = job.ParentID
+	}
+
+	claims.TaskName = taskName
+	claims.Audience = wid.Audience
+	claims.SetSubject(job, alloc.TaskGroup, taskName, wid.Name)
+
+	claims.ID = uuid.Generate()
+
+	return claims
 }
 
 // SetSubject creates the standard subject claim for workload identities.

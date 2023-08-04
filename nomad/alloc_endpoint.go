@@ -452,7 +452,7 @@ func (a *Alloc) GetServiceRegistrations(
 // This is an internal-only RPC and not exposed via the HTTP API.
 func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *structs.AllocIdentitiesResponse) error {
 
-	authErr := a.srv.Authenticate(a.ctx, args)
+	authErr := a.srv.AuthenticateClient(args)
 
 	// Ensure the connection was initiated by a client if TLS is used.
 	if err := validateTLSCertificateLevel(a.srv, a.ctx, tlsCertificateLevelClient); err != nil {
@@ -506,6 +506,15 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 					return err
 				}
 				reply.Index = index
+
+				// Set rejections since allocs could not be found and should be
+				// considered invalid.
+				for _, idReq := range args.Identities {
+					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+						WorkloadIdentityRequest: *idReq,
+						Reason:                  structs.WIRejectionReasonMissingAlloc,
+					})
+				}
 				return nil
 			}
 
@@ -549,7 +558,7 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 					}
 
 					widFound = true
-					claims := out.ToTaskIdentityClaims(out.Job, idReq.TaskName, wid, now)
+					claims := structs.NewIdentityClaims(out.Job, out, idReq.TaskName, wid, now)
 					token, _, err := a.srv.encrypter.SignClaims(claims)
 					if err != nil {
 						return err

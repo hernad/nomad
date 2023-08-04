@@ -16,6 +16,7 @@ import (
 	"github.com/hashicorp/nomad/nomad/mock"
 	"github.com/hashicorp/nomad/nomad/structs"
 	"github.com/hashicorp/nomad/testutil"
+	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -1672,4 +1673,56 @@ func TestAlloc_GetServiceRegistrations(t *testing.T) {
 			tc.testFn(t, server, aclToken)
 		})
 	}
+}
+
+func TestAlloc_SignIdentities_Bad(t *testing.T) {
+	t.Parallel()
+
+	// Use non-ACL server because auth should always be enforced on this endpoint
+	s1, cleanupS1 := TestServer(t, nil)
+	defer cleanupS1()
+	codec := rpcClient(t, s1)
+	testutil.WaitForLeader(t, s1.RPC)
+
+	req := &structs.AllocIdentitiesRequest{
+		QueryOptions: structs.QueryOptions{
+			Region:     "global",
+			Namespace:  structs.DefaultNamespace,
+			AllowStale: true,
+		},
+	}
+	var resp structs.AllocIdentitiesResponse
+
+	// Making a request without an auth token should be rejected
+	must.EqError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp), structs.ErrPermissionDenied.Error())
+
+	// Making a request with an invalid auth token should be rejected
+	req.QueryOptions.AuthToken = uuid.Generate()
+	must.EqError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp), structs.ErrPermissionDenied.Error())
+
+	// We can't make it any further without a real node, so let's make one
+	node := mock.Node()
+	nodeReq := &structs.NodeRegisterRequest{
+		Node:         node,
+		WriteRequest: structs.WriteRequest{Region: "global"},
+	}
+	var nodeResp structs.GenericResponse
+	must.NoError(t, msgpackrpc.CallWithCodec(codec, "Node.Register", nodeReq, &nodeResp))
+
+	// Not including identities results in an error to catch bad client
+	// implementations
+	req.QueryOptions.AuthToken = node.SecretID
+	must.EqError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp), "no identities requested")
+
+	// Making up an alloc returns a rejection.
+	req.Identities = []*structs.WorkloadIdentityRequest{{
+		AllocID:      uuid.Generate(),
+		TaskName:     "lies",
+		IdentityName: structs.WorkloadIdentityDefaultName,
+	}}
+	must.NoError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp))
+	must.Len(t, 1, resp.Rejections)
+	must.Eq(t, *req.Identities[0], resp.Rejections[0].WorkloadIdentityRequest)
+
+	//TODO(schmichael) finish hitting other errors in SignIdentities
 }
