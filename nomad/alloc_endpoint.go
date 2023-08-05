@@ -501,7 +501,7 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 				}
 			}
 
-			// If we could not find an alloc updated after the desired index, note
+			// If we could not find an alloc created after the min index, note when
 			// the index allocs were last updated.
 			if !thresholdMet {
 				index, err := state.Index("allocs")
