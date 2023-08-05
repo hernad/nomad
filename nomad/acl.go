@@ -16,23 +16,6 @@ import (
 	"github.com/hashicorp/nomad/nomad/structs"
 )
 
-// AuthenticateClient is a subset of Authenticate for RPCs which must only be
-// called by client agents. Management tokens, leader tokens, etc will all
-// receive an error and should return ErrPermissionDenied to the caller.
-func (s *Server) AuthenticateClient(args structs.RequestWithIdentity) error {
-	secretID := args.GetAuthToken()
-	node, err := s.State().NodeBySecretID(nil, secretID)
-	if err != nil {
-		// this is a go-memdb error; shouldn't happen
-		return fmt.Errorf("could not resolve node secret: %w", err)
-	}
-	if node == nil {
-		return fmt.Errorf("node not found")
-	}
-	args.SetIdentity(&structs.AuthenticatedIdentity{ClientID: node.ID})
-	return nil
-}
-
 // Authenticate extracts an AuthenticatedIdentity from the request context or
 // provided token and sets the identity on the request. The caller can extract
 // an acl.ACL, WorkloadIdentity, or other identifying tokens to use for

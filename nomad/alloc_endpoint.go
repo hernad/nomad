@@ -452,7 +452,7 @@ func (a *Alloc) GetServiceRegistrations(
 // This is an internal-only RPC and not exposed via the HTTP API.
 func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *structs.AllocIdentitiesResponse) error {
 
-	authErr := a.srv.AuthenticateClient(args)
+	authErr := a.srv.Authenticate(a.ctx, args)
 
 	// Ensure the connection was initiated by a client if TLS is used.
 	if err := validateTLSCertificateLevel(a.srv, a.ctx, tlsCertificateLevelClient); err != nil {
