@@ -5,7 +5,6 @@ package structs
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/hashicorp/go-multierror"
 	"golang.org/x/exp/slices"
@@ -158,7 +157,6 @@ type WorkloadIdentityRequest struct {
 type SignedWorkloadIdentity struct {
 	WorkloadIdentityRequest
 	JWT string
-	Exp time.Time
 }
 
 // WorkloadIdentityRejection is the response to a WorkloadIdentityRequest that

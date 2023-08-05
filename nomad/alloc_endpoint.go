@@ -566,7 +566,6 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 					reply.SignedIdentities = append(reply.SignedIdentities, &structs.SignedWorkloadIdentity{
 						WorkloadIdentityRequest: *idReq,
 						JWT:                     token,
-						Exp:                     claims.Expiry.Time(),
 					})
 					break
 				}
