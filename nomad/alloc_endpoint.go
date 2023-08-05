@@ -469,7 +469,8 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 	defer metrics.MeasureSince([]string{"nomad", "alloc", "sign_identities"}, time.Now())
 
 	if len(args.Identities) == 0 {
-		// Client bug
+		// Client bug. Fail loudly instead of letting clients waste time with
+		// noops.
 		return fmt.Errorf("no identities requested")
 	}
 
@@ -477,6 +478,9 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 		queryOpts: &args.QueryOptions,
 		queryMeta: &reply.QueryMeta,
 		run: func(ws memdb.WatchSet, state *state.StateStore) error {
+			// Reset Rejections on each loop
+			reply.Rejections = reply.Rejections[:0]
+
 			// Lookup the allocations
 			thresholdMet := false
 			for _, idReq := range args.Identities {
@@ -487,15 +491,14 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 
 				if out == nil {
 					// Alloc may have been GC'd and therefore should not be able to get
-					// new identities.
+					// identities signed.
 					continue
 				}
 
-				if out.ModifyIndex > args.QueryOptions.MinQueryIndex {
+				if out.CreateIndex > args.QueryOptions.MinQueryIndex {
 					thresholdMet = true
 					break
 				}
-				a.logger.Debug("threshold not met", "min", args.QueryOptions.MinQueryIndex, "max", out.ModifyIndex)
 			}
 
 			// If we could not find an alloc updated after the desired index, note
