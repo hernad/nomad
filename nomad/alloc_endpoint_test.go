@@ -1742,6 +1742,18 @@ func TestAlloc_SignIdentities_Bad(t *testing.T) {
 	must.NoError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp))
 	must.Len(t, 0, resp.Rejections)
 	must.Len(t, 1, resp.SignedIdentities)
+
+	// Looking for a missing alloc should return a rejection and a signed id
+	req.Identities = append(req.Identities, &structs.WorkloadIdentityRequest{
+		AllocID:      uuid.Generate(),
+		TaskName:     "foo",
+		IdentityName: "bar",
+	})
+	must.NoError(t, msgpackrpc.CallWithCodec(codec, "Alloc.SignIdentities", &req, &resp))
+	must.Len(t, 1, resp.Rejections)
+	must.Eq(t, *req.Identities[1], resp.Rejections[0].WorkloadIdentityRequest)
+	must.Eq(t, structs.WIRejectionReasonMissingAlloc, resp.Rejections[0].Reason)
+	must.Len(t, 1, resp.SignedIdentities)
 }
 
 // TestAlloc_SignIdentities_Blocking asserts that if a server is behind the
