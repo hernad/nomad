@@ -474,17 +474,25 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 		return fmt.Errorf("no identities requested")
 	}
 
+	// Tracks whether the min index was satisfied by the blocking query
+	thresholdMet := false
+
+	// Most if not all identity requests will be for the same alloc, so create a
+	// set of alloc IDs to avoid unnecessary looping in the blocking query.
+	allocs := make(map[string]*structs.Allocation, len(args.Identities))
+	for _, idReq := range args.Identities {
+		allocs[idReq.AllocID] = nil // to be set while watching
+	}
+
 	opts := blockingOptions{
 		queryOpts: &args.QueryOptions,
 		queryMeta: &reply.QueryMeta,
 		run: func(ws memdb.WatchSet, state *state.StateStore) error {
-			// Reset Rejections on each loop
-			reply.Rejections = reply.Rejections[:0]
+			var maxIndex uint64
 
 			// Lookup the allocations
-			thresholdMet := false
-			for _, idReq := range args.Identities {
-				out, err := state.AllocByID(ws, idReq.AllocID)
+			for allocID := range allocs {
+				out, err := state.AllocByID(ws, allocID)
 				if err != nil {
 					return err
 				}
@@ -495,9 +503,18 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 					continue
 				}
 
+				// Keep the alloc around so we can skip the statestore lookup later
+				allocs[allocID] = out
+
+				// If we have found a requested alloc created after the min query index
+				// that means we're observing a new enough version of state to satisfy
+				// the query.
 				if out.CreateIndex > args.QueryOptions.MinQueryIndex {
 					thresholdMet = true
-					break
+				}
+
+				if maxIndex < out.CreateIndex {
+					maxIndex = out.CreateIndex
 				}
 			}
 
@@ -508,86 +525,82 @@ func (a *Alloc) SignIdentities(args *structs.AllocIdentitiesRequest, reply *stru
 				if err != nil {
 					return err
 				}
-				reply.Index = index
-
-				// Set rejections since allocs could not be found and should be
-				// considered invalid.
-				for _, idReq := range args.Identities {
-					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
-						WorkloadIdentityRequest: *idReq,
-						Reason:                  structs.WIRejectionReasonMissingAlloc,
-					})
-				}
-				return nil
-			}
-
-			// Threshold met, so create the response
-			now := time.Now().UTC()
-			maxIndex := uint64(0)
-			for _, idReq := range args.Identities {
-				out, err := state.AllocByID(ws, idReq.AllocID)
-				if err != nil {
-					return err
-				}
-
-				if out == nil {
-					// Alloc may have been GC'd and therefore should not be able to get
-					// new identities.
-					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
-						WorkloadIdentityRequest: *idReq,
-						Reason:                  structs.WIRejectionReasonMissingAlloc,
-					})
-					continue
-				}
-
-				task := out.LookupTask(idReq.TaskName)
-				if task == nil {
-					// Job has likely been updated to remove this task
-					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
-						WorkloadIdentityRequest: *idReq,
-						Reason:                  structs.WIRejectionReasonMissingTask,
-					})
-					continue
-				}
-
-				//TODO(schmichael) do we need backward compat code for Task.Identity
-				//when IdentityName=="default"? I don't think so since this RPC will
-				//only be called by 1.6 clients
-
-				widFound := false
-				for _, wid := range task.Identities {
-					if wid.Name != idReq.IdentityName {
-						continue
-					}
-
-					widFound = true
-					claims := structs.NewIdentityClaims(out.Job, out, idReq.TaskName, wid, now)
-					token, _, err := a.srv.encrypter.SignClaims(claims)
-					if err != nil {
-						return err
-					}
-					reply.SignedIdentities = append(reply.SignedIdentities, &structs.SignedWorkloadIdentity{
-						WorkloadIdentityRequest: *idReq,
-						JWT:                     token,
-					})
-					break
-				}
-
-				if !widFound {
-					reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
-						WorkloadIdentityRequest: *idReq,
-						Reason:                  structs.WIRejectionReasonMissingIdentity,
-					})
-					continue
-				}
-
-				if maxIndex < out.ModifyIndex {
-					maxIndex = out.ModifyIndex
-				}
+				maxIndex = index
 			}
 
 			reply.Index = maxIndex
 			return nil
 		}}
-	return a.srv.blockingRPC(&opts)
+
+	if err := a.srv.blockingRPC(&opts); err != nil {
+		return err
+	}
+
+	// Index threshold was not met in the blocking query. Set rejections since
+	// allocs could not be found and should be considered invalid.
+	if !thresholdMet {
+		for _, idReq := range args.Identities {
+			reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+				WorkloadIdentityRequest: *idReq,
+				Reason:                  structs.WIRejectionReasonMissingAlloc,
+			})
+		}
+
+		// Return early so the rest of the func acts as the else (thresholdMet)
+		return nil
+	}
+
+	// Threshold met, so create the response
+	now := time.Now().UTC()
+	for _, idReq := range args.Identities {
+		out := allocs[idReq.AllocID]
+
+		if out == nil {
+			// Alloc may have been GC'd and therefore should not be able to get
+			// new identities.
+			reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+				WorkloadIdentityRequest: *idReq,
+				Reason:                  structs.WIRejectionReasonMissingAlloc,
+			})
+			continue
+		}
+
+		task := out.LookupTask(idReq.TaskName)
+		if task == nil {
+			// Job has likely been updated to remove this task
+			reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+				WorkloadIdentityRequest: *idReq,
+				Reason:                  structs.WIRejectionReasonMissingTask,
+			})
+			continue
+		}
+
+		widFound := false
+		for _, wid := range task.Identities {
+			if wid.Name != idReq.IdentityName {
+				continue
+			}
+
+			widFound = true
+			claims := structs.NewIdentityClaims(out.Job, out, idReq.TaskName, wid, now)
+			token, _, err := a.srv.encrypter.SignClaims(claims)
+			if err != nil {
+				return err
+			}
+			reply.SignedIdentities = append(reply.SignedIdentities, &structs.SignedWorkloadIdentity{
+				WorkloadIdentityRequest: *idReq,
+				JWT:                     token,
+			})
+			break
+		}
+
+		if !widFound {
+			reply.Rejections = append(reply.Rejections, &structs.WorkloadIdentityRejection{
+				WorkloadIdentityRequest: *idReq,
+				Reason:                  structs.WIRejectionReasonMissingIdentity,
+			})
+			continue
+		}
+	}
+	return nil
 }

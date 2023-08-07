@@ -1841,6 +1841,7 @@ func TestAlloc_SignIdentities_Blocking(t *testing.T) {
 	select {
 	case result := <-resultCh:
 		must.NoError(t, result.Err)
+		must.Eq(t, 2000, result.Reply.Index)
 		must.Len(t, 0, result.Reply.Rejections)
 		must.Len(t, 1, result.Reply.SignedIdentities)
 		sid := result.Reply.SignedIdentities[0]
