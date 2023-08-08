@@ -216,10 +216,14 @@ func (e *Encrypter) VerifyClaim(tokenString string) (*structs.IdentityClaims, er
 		return nil, err
 	}
 
-	// Validate the claims.
+	typedPubKey, err := pubKey.GetPublicKey()
+	if err != nil {
+		return nil, err
+	}
 
+	// Validate the claims.
 	claims := &structs.IdentityClaims{}
-	if err := token.Claims(pubKey.PublicKey, claims); err != nil {
+	if err := token.Claims(typedPubKey, claims); err != nil {
 		return nil, fmt.Errorf("invalid signature: %w", err)
 	}
 
