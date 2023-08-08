@@ -24,6 +24,12 @@ const (
 	wiTokenFile = "nomad_token"
 )
 
+// IdentitySigner is the interface needed to retrieve signed identities for
+// workload identities. At runtime it is implemented by *widmgr.WIDMgr.
+type IdentitySigner interface {
+	SignIdentities(minIndex uint64, req []*structs.WorkloadIdentityRequest) ([]*structs.SignedWorkloadIdentity, error)
+}
+
 type identityHook struct {
 	tr       *TaskRunner
 	tokenDir string
