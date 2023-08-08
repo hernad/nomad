@@ -7646,7 +7646,7 @@ func (t *Task) Canonicalize(job *Job, tg *TaskGroup) {
 	// If the default identity was found in Identities above, remove it from the
 	// slice.
 	if defaultIdx >= 0 {
-		slices.Delete(t.Identities, defaultIdx, defaultIdx+1)
+		t.Identities = slices.Delete(t.Identities, defaultIdx, defaultIdx+1)
 	}
 
 	// If there was no default identity, always create one.
