@@ -46,6 +46,10 @@ func New(c Config) *WIDMgr {
 // CreateIndex to ensure that the server handling the request isn't so stale
 // that it doesn't know the allocation exist (and therefore rejects the signing
 // requests).
+//
+// Since a single rejection causes an error to be returned, SignIdentities
+// should currently only be used when requesting signed identities for a single
+// allocation.
 func (m *WIDMgr) SignIdentities(minIndex uint64, req []*structs.WorkloadIdentityRequest) ([]*structs.SignedWorkloadIdentity, error) {
 	args := structs.AllocIdentitiesRequest{
 		Identities: req,
@@ -61,8 +65,10 @@ func (m *WIDMgr) SignIdentities(minIndex uint64, req []*structs.WorkloadIdentity
 		return nil, err
 	}
 
-	if len(reply.Rejections) > 0 {
-		return nil, fmt.Errorf("some signing requests were rejected: %d", len(reply.Rejections))
+	if n := len(reply.Rejections); n == 1 {
+		return nil, fmt.Errorf("%d/%d signing request was rejected", n, len(req))
+	} else if n > 1 {
+		return nil, fmt.Errorf("%d/%d signing requests were rejected", n, len(req))
 	}
 
 	if len(reply.SignedIdentities) == 0 {
