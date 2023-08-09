@@ -181,7 +181,6 @@ func (e *Encrypter) SignClaims(claim *structs.IdentityClaims) (string, string, e
 		}
 	}
 
-	//TODO(schmicael) make this less ugly
 	opts := (&jose.SignerOptions{}).WithHeader("kid", keyset.rootKey.Meta.KeyID).WithType("JWT")
 	sig, err := jose.NewSigner(jose.SigningKey{Algorithm: jose.EdDSA, Key: keyset.privateKey}, opts)
 	if err != nil {
@@ -227,8 +226,9 @@ func (e *Encrypter) VerifyClaim(tokenString string) (*structs.IdentityClaims, er
 		return nil, fmt.Errorf("invalid signature: %w", err)
 	}
 
-	//TODO(schmichael) figure out a comment to describe when we can start
-	//having Expectations for the default jwt without breaking backward compat
+	//COMPAT Until we can guarantee there are no pre-1.7 JWTs in use we can only
+	//       validate the signature and have no further expectations of the
+	//       claims.
 	expect := jwt.Expected{}
 	if err := claims.Validate(expect); err != nil {
 		return nil, fmt.Errorf("invalid claims: %w", err)
