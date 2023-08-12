@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hernad/nomad/drivers/nix/executor"
+	"../nix/executor"
 	"github.com/hernad/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hernad/nomad/client/lib/cgutil"
