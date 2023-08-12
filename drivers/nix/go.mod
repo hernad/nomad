@@ -1,4 +1,4 @@
-module github.com/hernad/nomad-driver-nix2
+module github.com/hernad/nomad/drivers/nix
 
 go 1.19
 
