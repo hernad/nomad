@@ -12,7 +12,7 @@ require (
 	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/go-plugin v1.4.4
-	github.com/hernad/nomad v1.6.105
+	github.com/hernad/nomad v1.6.106
 	github.com/mitchellh/go-ps v1.0.0
 	github.com/opencontainers/runc v1.1.4
 	github.com/opencontainers/runtime-spec v1.0.3-0.20210326190908-1c3f411f0417
