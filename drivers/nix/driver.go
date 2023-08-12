@@ -10,7 +10,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hernad/nomad/drivers/nix/executor"
+	//"github.com/hernad/nomad/drivers/nix/executor"
+	"github.com/hernad/nomad/drivers/shared/executor"
+
 	"github.com/hernad/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hernad/nomad/client/lib/cgutil"
@@ -47,11 +49,18 @@ var (
 		PluginType: base.PluginTypeDriver,
 	}
 
+	// PluginConfig is the rawexec factory function registered in the
+	// plugin catalog.
+	PluginConfig = &loader.InternalPluginConfig{
+		Config:  map[string]interface{}{},
+		Factory: func(ctx context.Context, l hclog.Logger) interface{} { return NewPlugin(ctx, l) },
+	}
+
 	// pluginInfo is the response returned for the PluginInfo RPC
 	pluginInfo = &base.PluginInfoResponse{
 		Type:              base.PluginTypeDriver,
 		PluginApiVersions: []string{drivers.ApiVersion010},
-		PluginVersion:     "0.1.0",
+		PluginVersion:     "0.0.1",
 		Name:              pluginName,
 	}
 
@@ -71,7 +80,7 @@ var (
 		),
 		"default_nixpkgs": hclspec.NewDefault(
 			hclspec.NewAttr("default_nixpkgs", "string", false),
-			hclspec.NewLiteral(`"github:nixos/nixpkgs/nixos-22.05"`),
+			hclspec.NewLiteral(`"github:nixos/nixpkgs/nixos-23.05"`),
 		),
 		"allow_caps": hclspec.NewDefault(
 			hclspec.NewAttr("allow_caps", "list(string)", false),
@@ -269,15 +278,14 @@ type TaskState struct {
 }
 
 // NewPlugin returns a new DrivePlugin implementation
-func NewPlugin(logger hclog.Logger) drivers.DriverPlugin {
-	ctx, cancel := context.WithCancel(context.Background())
+func NewPlugin(ctx context.Context, logger hclog.Logger) drivers.DriverPlugin {
+	//ctx, cancel := context.WithCancel(context.Background())
 	logger = logger.Named(pluginName)
 	return &Driver{
-		eventer:        eventer.NewEventer(ctx, logger),
-		tasks:          newTaskStore(),
-		ctx:            ctx,
-		signalShutdown: cancel,
-		logger:         logger,
+		eventer: eventer.NewEventer(ctx, logger),
+		tasks:   newTaskStore(),
+		ctx:     ctx,
+		logger:  logger,
 	}
 }
 

@@ -21,9 +21,9 @@ import (
 	"github.com/hernad/nomad/client/allocdir"
 	"github.com/hernad/nomad/client/lib/fifo"
 	"github.com/hernad/nomad/client/lib/resources"
-	"github.com/hernad/nomad/client/stats"
+	//"github.com/hernad/nomad/client/stats"
+	"github.com/hernad/nomad/helper/stats"
 	cstructs "github.com/hernad/nomad/client/structs"
-	shelpers "github.com/hernad/nomad/helper/stats"
 	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/syndtr/gocapability/capability"
 )

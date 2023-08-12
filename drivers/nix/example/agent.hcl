@@ -5,6 +5,6 @@ client {
 
 plugin "nix-driver" {
   config {
-    default_nixpkgs = "github:nixos/nixpkgs/nixos-22.05"
+    default_nixpkgs = "github:nixos/nixpkgs/nixos-23.05"
   }
 }

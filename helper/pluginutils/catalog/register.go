@@ -20,5 +20,6 @@ func init() {
 	Register(exec.PluginID, exec.PluginConfig)
 	Register(qemu.PluginID, qemu.PluginConfig)
 	Register(java.PluginID, java.PluginConfig)
+	Register(nix.PluginID,  nix.PluginConfig)
 	RegisterDeferredConfig(docker.PluginID, docker.PluginConfig, docker.PluginLoader)
 }
