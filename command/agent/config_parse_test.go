@@ -569,7 +569,7 @@ func (c *Config) addDefaults() {
 
 // Tests for a panic parsing json with an object of exactly
 // length 1 described in
-// https://github.com/hashicorp/nomad/issues/1290
+// https://github.com/hernad/nomad/issues/1290
 func TestConfig_ParsePanic(t *testing.T) {
 	ci.Parallel(t)
 

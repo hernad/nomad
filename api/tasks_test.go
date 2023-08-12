@@ -476,7 +476,7 @@ func TestTask_Canonicalize_Vault(t *testing.T) {
 	}
 }
 
-// Ensures no regression on https://github.com/hashicorp/nomad/issues/3132
+// Ensures no regression on https://github.com/hernad/nomad/issues/3132
 func TestTaskGroup_Canonicalize_Update(t *testing.T) {
 	testutil.Parallel(t)
 

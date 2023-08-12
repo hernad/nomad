@@ -1180,7 +1180,7 @@ func TestAllocRunner_TaskLeader_StopTG(t *testing.T) {
 // TestAllocRunner_TaskLeader_StopRestoredTG asserts that when stopping a
 // restored task group with a leader that failed before restoring the leader is
 // not stopped as it does not exist.
-// See https://github.com/hashicorp/nomad/issues/3420#issuecomment-341666932
+// See https://github.com/hernad/nomad/issues/3420#issuecomment-341666932
 func TestAllocRunner_TaskLeader_StopRestoredTG(t *testing.T) {
 	ci.Parallel(t)
 

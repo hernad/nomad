@@ -1,19 +1,19 @@
-module github.com/hashicorp/nomad
+module github.com/hernad/nomad
 
 go 1.20
 
-// Pinned dependencies are noted in github.com/hashicorp/nomad/issues/11826
+// Pinned dependencies are noted in github.com/hernad/nomad/issues/11826
 replace (
 	github.com/Microsoft/go-winio => github.com/endocrimes/go-winio v0.4.13-0.20190628114223-fb47a8b41948
 	github.com/hashicorp/hcl => github.com/hashicorp/hcl v1.0.1-0.20201016140508-a07e7d50bbee
 )
 
 // Pin dependency with additional logs and defensive code to workaround panic
-// described in https://github.com/hashicorp/nomad/issues/15861.
+// described in https://github.com/hernad/nomad/issues/15861.
 replace github.com/armon/go-metrics => github.com/armon/go-metrics v0.0.0-20230509193637-d9ca9af9f1f9
 
 // Nomad is built using the current source of the API module
-replace github.com/hashicorp/nomad/api => ./api
+replace github.com/hernad/nomad/api => ./api
 
 require (
 	github.com/LK4D4/joincontext v0.0.0-20171026170139-1724345da6d5
@@ -76,7 +76,7 @@ require (
 	github.com/hashicorp/logutils v1.0.0
 	github.com/hashicorp/memberlist v0.5.0
 	github.com/hashicorp/net-rpc-msgpackrpc v0.0.0-20151116020338-a14192a58a69
-	github.com/hashicorp/nomad/api v0.0.0-20230103221135-ce00d683f9be
+	github.com/hernad/nomad/api v0.0.0-20230103221135-ce00d683f9be
 	github.com/hashicorp/raft v1.5.0
 	github.com/hashicorp/raft-autopilot v0.1.6
 	github.com/hashicorp/raft-boltdb/v2 v2.2.2

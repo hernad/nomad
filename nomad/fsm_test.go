@@ -3015,7 +3015,7 @@ func TestFSM_ReconcileSummaries(t *testing.T) {
 
 // COMPAT: Remove in 0.11
 func TestFSM_ReconcileParentJobSummary(t *testing.T) {
-	// This test exercises code to handle https://github.com/hashicorp/nomad/issues/3886
+	// This test exercises code to handle https://github.com/hernad/nomad/issues/3886
 	ci.Parallel(t)
 
 	require := require.New(t)

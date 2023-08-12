@@ -121,7 +121,7 @@ func testPeriodicJob(times ...time.Time) *structs.Job {
 }
 
 // TestPeriodicDispatch_SetEnabled test that setting enabled twice is a no-op.
-// This tests the reported issue: https://github.com/hashicorp/nomad/issues/2829
+// This tests the reported issue: https://github.com/hernad/nomad/issues/2829
 func TestPeriodicDispatch_SetEnabled(t *testing.T) {
 	ci.Parallel(t)
 	p, _ := testPeriodicDispatcher(t)

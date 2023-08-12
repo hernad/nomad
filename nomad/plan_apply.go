@@ -547,7 +547,7 @@ func evaluatePlanPlacements(pool *EvaluatePool, snap *state.StateSnapshot, plan 
 			if reason != "" {
 				//TODO This was debug level and should return
 				//to debug level in the future. However until
-				//https://github.com/hashicorp/nomad/issues/9506
+				//https://github.com/hernad/nomad/issues/9506
 				//is resolved this log line is the only way to
 				//monitor the disagreement between workers and
 				//the plan applier.

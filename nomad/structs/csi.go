@@ -818,7 +818,7 @@ func (v *CSIVolume) Merge(other *CSIVolume) error {
 
 	// must be compatible with capacity range
 	// TODO: when ExpandVolume is implemented we'll need to update
-	// this logic https://github.com/hashicorp/nomad/issues/10324
+	// this logic https://github.com/hernad/nomad/issues/10324
 	if v.Capacity != 0 {
 		if other.RequestedCapacityMax < v.Capacity ||
 			other.RequestedCapacityMin > v.Capacity {

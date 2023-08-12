@@ -25,7 +25,7 @@ func TestClientAllocs(t *testing.T) {
 // testAllocZombie ensures that a restart of a dead allocation does not cause
 // it to come back to life in a not-quite alive state.
 //
-// https://github.com/hashicorp/nomad/issues/17079
+// https://github.com/hernad/nomad/issues/17079
 func testAllocZombie(t *testing.T) {
 	nomad := e2eutil.NomadClient(t)
 

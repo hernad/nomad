@@ -160,7 +160,7 @@ type TaskEnv struct {
 
 	// EnvMap is the map of environment variables with client-specific
 	// task directories
-	// See https://github.com/hashicorp/nomad/pull/9671
+	// See https://github.com/hernad/nomad/pull/9671
 	EnvMapClient map[string]string
 
 	// clientTaskDir is the absolute path to the task root directory on the host
@@ -338,7 +338,7 @@ func (t *TaskEnv) ReplaceEnv(arg string) string {
 // * NOMAD_SECRETS_DIR
 // and anything that was interpolated using them.
 //
-// See https://github.com/hashicorp/nomad/pull/9671
+// See https://github.com/hernad/nomad/pull/9671
 func (t *TaskEnv) replaceEnvClient(arg string) string {
 	return hargs.ReplaceEnv(arg, t.EnvMapClient, t.NodeAttrs)
 }

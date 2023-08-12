@@ -159,7 +159,7 @@ func TestEvalContext_ProposedAlloc(t *testing.T) {
 // TestEvalContext_ProposedAlloc_EvictPreempt asserts both Evicted and
 // Preempted allocs are removed from the allocs propsed for a node.
 //
-// See https://github.com/hashicorp/nomad/issues/6787
+// See https://github.com/hernad/nomad/issues/6787
 func TestEvalContext_ProposedAlloc_EvictPreempt(t *testing.T) {
 	ci.Parallel(t)
 	state, ctx := testContext(t)

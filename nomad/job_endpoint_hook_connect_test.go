@@ -403,7 +403,7 @@ func TestJobEndpointConnect_groupConnectHook_MeshGateway(t *testing.T) {
 // proxy task is being created for a group service with an interpolated name,
 // the service name is interpolated *before the task is created.
 //
-// See https://github.com/hashicorp/nomad/issues/6853
+// See https://github.com/hernad/nomad/issues/6853
 func TestJobEndpointConnect_ConnectInterpolation(t *testing.T) {
 	ci.Parallel(t)
 

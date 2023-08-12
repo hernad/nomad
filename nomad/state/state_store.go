@@ -3912,7 +3912,7 @@ func (s *StateStore) upsertAllocsImpl(index uint64, allocs []*structs.Allocation
 				alloc.DeploymentStatus.ModifyIndex = index
 			}
 
-			// Issue https://github.com/hashicorp/nomad/issues/2583 uncovered
+			// Issue https://github.com/hernad/nomad/issues/2583 uncovered
 			// the a race between a forced garbage collection and the scheduler
 			// marking an allocation as terminal. The issue is that the
 			// allocation from the scheduler has its job normalized and the FSM
@@ -5055,7 +5055,7 @@ func (s *StateStore) ReconcileJobSummaries(index uint64) error {
 			// COMPAT: Remove after 0.11
 
 			// The following block of code fixes incorrect child summaries due to a bug
-			// See https://github.com/hashicorp/nomad/issues/3886 for details
+			// See https://github.com/hernad/nomad/issues/3886 for details
 			rawSummary, err := txn.First("job_summary", "id", job.Namespace, job.ID)
 			if err != nil {
 				return err

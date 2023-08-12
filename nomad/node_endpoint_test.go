@@ -987,7 +987,7 @@ func TestClientEndpoint_UpdateStatus_Reconnect(t *testing.T) {
 		for _, eval := range evals {
 			// TODO: remove this check once the disconnect process stops
 			// leaking a max-disconnect-timeout eval.
-			// https://github.com/hashicorp/nomad/issues/12809
+			// https://github.com/hernad/nomad/issues/12809
 			if eval.TriggeredBy == structs.EvalTriggerMaxDisconnectTimeout {
 				continue
 			}

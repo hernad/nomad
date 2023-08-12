@@ -115,7 +115,7 @@ func (h *apiHook) Stop(ctx context.Context, req *interfaces.TaskStopRequest, res
 // The path needs to be as short as possible because of the low limits on the
 // sun_path char array imposed by the syscall used to create unix sockets.
 //
-// See https://github.com/hashicorp/nomad/pull/13971 for an example of the
+// See https://github.com/hernad/nomad/pull/13971 for an example of the
 // sadness this causes.
 func apiSocketPath(taskDir *allocdir.TaskDir) string {
 	return filepath.Join(taskDir.SecretsDir, "api.sock")

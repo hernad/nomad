@@ -99,7 +99,7 @@ func newNetworkManager(alloc *structs.Allocation, driverManager drivermanager.Ma
 			//  indicates only Docker supports this, which is true unless a
 			//  custom driver can which means this check still holds as true as
 			//  we can tell.
-			//  Please see: https://github.com/hashicorp/nomad/issues/11180
+			//  Please see: https://github.com/hernad/nomad/issues/11180
 			return nil, fmt.Errorf("hostname is not currently supported on driver %s", task.Driver)
 		}
 

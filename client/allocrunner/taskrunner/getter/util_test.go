@@ -41,10 +41,10 @@ func TestUtil_getURL(t *testing.T) {
 	}, {
 		name: "option",
 		artifact: &structs.TaskArtifact{
-			GetterSource:  "git::github.com/hashicorp/nomad",
+			GetterSource:  "git::github.com/hernad/nomad",
 			GetterOptions: map[string]string{"sshkey": "abc123"},
 		},
-		expURL: "git::github.com/hashicorp/nomad?sshkey=abc123",
+		expURL: "git::github.com/hernad/nomad?sshkey=abc123",
 		expErr: nil,
 	}, {
 		name: "github case",

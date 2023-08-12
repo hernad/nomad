@@ -374,7 +374,7 @@ func TestCheckWatcher_MultipleChecks(t *testing.T) {
 
 // TestCheckWatcher_Deadlock asserts that check watcher will not deadlock when
 // attempting to restart a task even if its update queue is full.
-// https://github.com/hashicorp/nomad/issues/5395
+// https://github.com/hernad/nomad/issues/5395
 func TestCheckWatcher_Deadlock(t *testing.T) {
 	ci.Parallel(t)
 

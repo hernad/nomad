@@ -505,7 +505,7 @@ func (s *Server) purgeSITokenAccessors(accessors []*structs.SITokenAccessor) err
 // the Consul scope. There was a Meta field introduced which Nomad can leverage
 // in the future, when Consul no longer supports versions that do not contain the
 // field. The Meta field would be used to track which Nomad "owns" the CE.
-// https://github.com/hashicorp/nomad/issues/8971
+// https://github.com/hernad/nomad/issues/8971
 type ConsulConfigsAPI interface {
 	// SetIngressCE adds the given ConfigEntry to Consul, overwriting
 	// the previous entry if set.

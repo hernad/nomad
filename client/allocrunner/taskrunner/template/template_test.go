@@ -2040,7 +2040,7 @@ func TestTaskTemplateManager_Escapes(t *testing.T) {
 		},
 		//TODO: Fix this test. I *think* it should pass. The double
 		//      joining of the task dir onto the destination seems like
-		//      a bug. https://github.com/hashicorp/nomad/issues/9389
+		//      a bug. https://github.com/hernad/nomad/issues/9389
 		{
 			Name: "RawExecOk",
 			Config: func() *TaskTemplateManagerConfig {

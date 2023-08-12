@@ -673,7 +673,7 @@ func TestEnvironment_AppendHostEnvvars(t *testing.T) {
 
 // TestEnvironment_DashesInTaskName asserts dashes in port labels are properly
 // converted to underscores in environment variables.
-// See: https://github.com/hashicorp/nomad/issues/2405
+// See: https://github.com/hernad/nomad/issues/2405
 func TestEnvironment_DashesInTaskName(t *testing.T) {
 	ci.Parallel(t)
 

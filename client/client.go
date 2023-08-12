@@ -566,7 +566,7 @@ func NewClient(cfg *config.Config, consulCatalog consul.CatalogAPI, consulProxie
 			"state_dir", cfg.StateDir, "alloc_dir", cfg.AllocDir)
 		logger.Error("Corrupt state is often caused by a bug. Please " +
 			"report as much information as possible to " +
-			"https://github.com/hashicorp/nomad/issues")
+			"https://github.com/hernad/nomad/issues")
 		return nil, fmt.Errorf("failed to restore state")
 	}
 
@@ -1301,8 +1301,8 @@ func (c *Client) restoreState() error {
 // wait until it gets allocs from server to launch them.
 //
 // See:
-//   - https://github.com/hashicorp/nomad/pull/6207
-//   - https://github.com/hashicorp/nomad/issues/5984
+//   - https://github.com/hernad/nomad/pull/6207
+//   - https://github.com/hernad/nomad/issues/5984
 //
 // COMPAT(0.12): remove once upgrading from 0.9.5 is no longer supported
 func (c *Client) hasLocalState(alloc *structs.Allocation) bool {

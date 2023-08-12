@@ -2264,7 +2264,7 @@ func TestTask_Validate_Service_AddressMode_Ok(t *testing.T) {
 
 	cases := []*Service{
 		{
-			// https://github.com/hashicorp/nomad/issues/3681#issuecomment-357274177
+			// https://github.com/hernad/nomad/issues/3681#issuecomment-357274177
 			Name:        "DriverModeWithLabel",
 			Provider:    "consul",
 			PortLabel:   "http",
@@ -2333,7 +2333,7 @@ func TestTask_Validate_Service_AddressMode_Bad(t *testing.T) {
 
 	cases := []*Service{
 		{
-			// https://github.com/hashicorp/nomad/issues/3681#issuecomment-357274177
+			// https://github.com/hernad/nomad/issues/3681#issuecomment-357274177
 			Name:        "DriverModeWithLabel",
 			PortLabel:   "asdf",
 			AddressMode: AddressModeDriver,

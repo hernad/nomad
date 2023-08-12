@@ -18,7 +18,7 @@ import (
 // Test that we properly create the bitmap even when the alloc set includes an
 // allocation with a higher count than the current min count and it is byte
 // aligned.
-// Ensure no regression from: https://github.com/hashicorp/nomad/issues/3008
+// Ensure no regression from: https://github.com/hernad/nomad/issues/3008
 func TestBitmapFrom(t *testing.T) {
 	ci.Parallel(t)
 

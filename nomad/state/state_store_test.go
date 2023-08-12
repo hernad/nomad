@@ -6182,7 +6182,7 @@ func TestStateStore_UpsertAlloc_AllocsByNamespace(t *testing.T) {
 }
 
 // Testing to ensure we keep issue
-// https://github.com/hashicorp/nomad/issues/2583 fixed
+// https://github.com/hernad/nomad/issues/2583 fixed
 func TestStateStore_UpsertAlloc_No_Job(t *testing.T) {
 	ci.Parallel(t)
 

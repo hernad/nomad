@@ -1703,7 +1703,7 @@ func (d *Driver) SignalTask(taskID string, signal string) error {
 
 	// TODO: review whether we can timeout in this and other Docker API
 	// calls without breaking the expected client behavior.
-	// see https://github.com/hashicorp/nomad/issues/9503
+	// see https://github.com/hernad/nomad/issues/9503
 	return h.Signal(context.Background(), sig)
 }
 

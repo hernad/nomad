@@ -11105,7 +11105,7 @@ func (a *Allocation) ToIdentityClaims(job *Job) *IdentityClaims {
 			// TODO: implement a refresh loop to prevent allocation identities from
 			// expiring before the allocation is terminal. Once that's implemented,
 			// add an ExpiresAt here ExpiresAt: &jwt.NumericDate{}
-			// https://github.com/hashicorp/nomad/issues/16258
+			// https://github.com/hernad/nomad/issues/16258
 			NotBefore: now,
 			IssuedAt:  now,
 		},

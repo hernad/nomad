@@ -136,7 +136,7 @@ func (tc *ConsulE2ETest) TestConsulRegisterOnUpdate(f *framework.F) {
 func (tc *ConsulE2ETest) TestCanaryInplaceUpgrades(f *framework.F) {
 	t := f.T()
 
-	// TODO(shoenig) https://github.com/hashicorp/nomad/issues/9627
+	// TODO(shoenig) https://github.com/hernad/nomad/issues/9627
 	t.Skip("THIS TEST IS BROKEN (#9627)")
 
 	nomadClient := tc.Nomad()

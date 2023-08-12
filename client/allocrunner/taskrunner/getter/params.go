@@ -118,7 +118,7 @@ func (p *parameters) Equal(o *parameters) bool {
 
 const (
 	// stop privilege escalation via setuid/setgid
-	// https://github.com/hashicorp/nomad/issues/6176
+	// https://github.com/hernad/nomad/issues/6176
 	umask = fs.ModeSetuid | fs.ModeSetgid
 )
 

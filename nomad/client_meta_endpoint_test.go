@@ -36,7 +36,7 @@ import (
 // ending is never pretty as the Servers will suffer CPU starvation and
 // potentially Raft flapping before anyone actually OOMs.
 //
-// See https://github.com/hashicorp/nomad/issues/16517 for details.
+// See https://github.com/hernad/nomad/issues/16517 for details.
 //
 // If test fails it will do so spectacularly by consuming all available CPU and
 // potentially all available memory. Running it in a VM or container is

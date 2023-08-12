@@ -118,7 +118,7 @@ func TestJobEndpoint_Register(t *testing.T) {
 // terminal, not just DesiredStatus, for the resources used by a job to be
 // considered free for subsequent placements to use.
 //
-// See: https://github.com/hashicorp/nomad/issues/10440
+// See: https://github.com/hernad/nomad/issues/10440
 func TestJobEndpoint_Register_NonOverlapping(t *testing.T) {
 	ci.Parallel(t)
 

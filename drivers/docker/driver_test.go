@@ -194,7 +194,7 @@ func dockerDriverHarness(t *testing.T, cfg map[string]interface{}) *dtestutil.Dr
 	}
 
 	// If on windows, "allow" (don't attempt to drop) linux capabilities.
-	// https://github.com/hashicorp/nomad/issues/15181
+	// https://github.com/hernad/nomad/issues/15181
 	// TODO: this should instead get fixed properly in capabilities package.
 	if _, ok := cfg["allow_caps"]; !ok && runtime.GOOS == "windows" {
 		cfg["allow_caps"] = capabilities.DockerDefaults().Slice(false)
@@ -314,7 +314,7 @@ func TestDockerDriver_Start_WaitFinish(t *testing.T) {
 // TestDockerDriver_Start_StoppedContainer asserts that Nomad will detect a
 // stopped task container, remove it, and start a new container.
 //
-// See https://github.com/hashicorp/nomad/issues/3419
+// See https://github.com/hernad/nomad/issues/3419
 func TestDockerDriver_Start_StoppedContainer(t *testing.T) {
 	ci.Parallel(t)
 	testutil.DockerCompatible(t)
@@ -2426,7 +2426,7 @@ func TestDockerDriver_OOMKilled(t *testing.T) {
 	testutil.DockerCompatible(t)
 
 	// waiting on upstream fix for cgroups v2
-	// see https://github.com/hashicorp/nomad/issues/13119
+	// see https://github.com/hernad/nomad/issues/13119
 	testutil.CgroupsCompatibleV1(t)
 
 	taskCfg := newTaskConfig("", []string{"sh", "-c", `sleep 2 && x=a && while true; do x="$x$x"; done`})

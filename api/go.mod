@@ -1,4 +1,4 @@
-module github.com/hashicorp/nomad/api
+module github.com/hernad/nomad/api
 
 go 1.20
 

@@ -18,7 +18,7 @@ import (
 // TestOverlap asserts that the resources used by an allocation are not
 // considered free until their ClientStatus is terminal.
 //
-// See: https://github.com/hashicorp/nomad/issues/10440
+// See: https://github.com/hernad/nomad/issues/10440
 func TestOverlap(t *testing.T) {
 	nomadClient := e2eutil.NomadClient(t)
 	e2eutil.WaitForLeader(t, nomadClient)

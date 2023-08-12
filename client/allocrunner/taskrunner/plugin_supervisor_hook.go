@@ -215,7 +215,7 @@ func (h *csiPluginSupervisorHook) Prestart(ctx context.Context,
 
 func (h *csiPluginSupervisorHook) setSocketHook() {
 
-	// TODO(tgross): https://github.com/hashicorp/nomad/issues/11786
+	// TODO(tgross): https://github.com/hernad/nomad/issues/11786
 	// If we're already registered, we should be able to update the
 	// definition in the update hook
 

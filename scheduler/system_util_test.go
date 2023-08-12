@@ -169,7 +169,7 @@ func TestDiffSystemAllocsForNode_Stops(t *testing.T) {
 	// existing non-terminal allocs for this version should be updated in-place
 
 	// TODO(tgross): *unless* there's another alloc for the same job already on
-	// the node. See https://github.com/hashicorp/nomad/pull/16097
+	// the node. See https://github.com/hernad/nomad/pull/16097
 	oldJob := new(structs.Job)
 	*oldJob = *job
 	oldJob.JobModifyIndex -= 1
@@ -184,7 +184,7 @@ func TestDiffSystemAllocsForNode_Stops(t *testing.T) {
 		{
 			// extraneous alloc for old version of job should be updated
 			// TODO(tgross): this should actually be stopped.
-			// See https://github.com/hashicorp/nomad/pull/16097
+			// See https://github.com/hernad/nomad/pull/16097
 			ID:     uuid.Generate(),
 			NodeID: node.ID,
 			Name:   "my-job.web[0]",
