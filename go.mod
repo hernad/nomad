@@ -82,8 +82,9 @@ require (
 	github.com/hashicorp/vault/api v1.9.1
 	github.com/hashicorp/vault/sdk v0.9.0
 	github.com/hashicorp/yamux v0.1.1
-	github.com/hernad/consul-template v0.31.0h
+	github.com/hernad/consul-template v0.31.100
 	github.com/hernad/nomad/api v0.0.0-20230103221135-ce00d683f9be
+	github.com/hernad/drivers/nix v1.6.105
 	github.com/hpcloud/tail v1.0.1-0.20170814160653-37f427138745
 	github.com/kr/pretty v0.3.1
 	github.com/kr/text v0.2.0
