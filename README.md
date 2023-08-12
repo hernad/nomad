@@ -3,15 +3,18 @@ Nomad
 [![Discuss](https://img.shields.io/badge/discuss-nomad-00BC7F?style=flat)](https://discuss.hashicorp.com/c/nomad)
 ===
 
-<p align="center" style="text-align:center;">
-  <a href="https://nomadproject.io">
-    <img alt="HashiCorp Nomad logo" src="website/public/img/logo-hashicorp.svg" width="500" />
-  </a>
-</p>
+Nomad hernad's fork
+
+build on nix
+
+<pre>
+nix-shell -p go -p zip -p tree
+make release
+</pre>
+
 
 Nomad is a simple and flexible workload orchestrator to deploy and manage containers ([docker](https://www.nomadproject.io/docs/drivers/docker.html), [podman](https://www.nomadproject.io/docs/drivers/podman)), non-containerized applications ([executable](https://www.nomadproject.io/docs/drivers/exec.html), [Java](https://www.nomadproject.io/docs/drivers/java)), and virtual machines ([qemu](https://www.nomadproject.io/docs/drivers/qemu.html)) across on-prem and clouds at scale.
 
-Nomad is supported on Linux, Windows, and macOS. A commercial version of Nomad, [Nomad Enterprise](https://www.nomadproject.io/docs/enterprise), is also available.
 
 * Website: https://nomadproject.io
 * Tutorials: [HashiCorp Learn](https://learn.hashicorp.com/nomad)
@@ -55,6 +58,3 @@ A timeline of major features expected for the next release or two can be found i
 
 This roadmap is a best guess at any given point, and both release dates and projects in each release are subject to change. Do not take any of these items as commitments, especially ones later than one major release away.
 
-Contributing
---------------------
-See the [`contributing`](contributing/) directory for more developer documentation.

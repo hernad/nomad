@@ -43,7 +43,6 @@ require (
 	github.com/gosuri/uilive v0.0.4
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/hashicorp/cap v0.2.0
-	github.com/hernad/consul-template v0.31.0-h
 	github.com/hashicorp/consul/api v1.18.0
 	github.com/hashicorp/consul/sdk v0.13.0
 	github.com/hashicorp/cronexpr v1.1.2
@@ -76,7 +75,6 @@ require (
 	github.com/hashicorp/logutils v1.0.0
 	github.com/hashicorp/memberlist v0.5.0
 	github.com/hashicorp/net-rpc-msgpackrpc v0.0.0-20151116020338-a14192a58a69
-	github.com/hernad/nomad/api v0.0.0-20230103221135-ce00d683f9be
 	github.com/hashicorp/raft v1.5.0
 	github.com/hashicorp/raft-autopilot v0.1.6
 	github.com/hashicorp/raft-boltdb/v2 v2.2.2
@@ -84,6 +82,8 @@ require (
 	github.com/hashicorp/vault/api v1.9.1
 	github.com/hashicorp/vault/sdk v0.9.0
 	github.com/hashicorp/yamux v0.1.1
+	github.com/hernad/consul-template v0.31.1-0.20230812114322-3de1708157fb
+	github.com/hernad/nomad/api v0.0.0-20230103221135-ce00d683f9be
 	github.com/hpcloud/tail v1.0.1-0.20170814160653-37f427138745
 	github.com/kr/pretty v0.3.1
 	github.com/kr/text v0.2.0
