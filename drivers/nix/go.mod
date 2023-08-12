@@ -1,6 +1,6 @@
 module github.com/hernad/nomad/drivers/nix
 
-go 1.19
+go 1.20
 
 require (
 	github.com/LK4D4/joincontext v0.0.0-20171026170139-1724345da6d5
