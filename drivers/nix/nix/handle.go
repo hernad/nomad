@@ -6,7 +6,7 @@ import (
 	"sync"
 	"time"
 
-	"../nix/executor"
+	"github.com/hernad/nomad/drivers/nix/executor""
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
 	"github.com/hernad/nomad/plugins/drivers"
