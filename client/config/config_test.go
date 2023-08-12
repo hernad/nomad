@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/consul-template/config"
+	"github.com/hernad/consul-template/config"
 	"github.com/hernad/nomad/ci"
 	"github.com/hernad/nomad/helper/pointer"
 	"github.com/stretchr/testify/require"

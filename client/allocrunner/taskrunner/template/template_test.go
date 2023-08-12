@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	templateconfig "github.com/hashicorp/consul-template/config"
+	templateconfig "github.com/hernad/consul-template/config"
 	ctestutil "github.com/hashicorp/consul/sdk/testutil"
 	"github.com/hernad/nomad/ci"
 	"github.com/hernad/nomad/client/allocdir"

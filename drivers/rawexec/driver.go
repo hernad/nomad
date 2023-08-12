@@ -13,7 +13,7 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hashicorp/consul-template/signals"
+	"github.com/hernad/consul-template/signals"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hernad/nomad/drivers/shared/eventer"
 	"github.com/hernad/nomad/drivers/shared/executor"

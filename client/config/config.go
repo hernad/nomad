@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/consul-template/config"
+	"github.com/hernad/consul-template/config"
 	log "github.com/hashicorp/go-hclog"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"

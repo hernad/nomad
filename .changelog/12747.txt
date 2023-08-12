@@ -1,3 +1,3 @@
 ```release-note:improvement
-deps: Updated hashicorp/consul-template to v0.29.0
+deps: Updated hernad/consul-template to v0.29.0
 ```

@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	ctconf "github.com/hashicorp/consul-template/config"
-	"github.com/hashicorp/consul-template/manager"
-	"github.com/hashicorp/consul-template/signals"
+	ctconf "github.com/hernad/consul-template/config"
+	"github.com/hernad/consul-template/manager"
+	"github.com/hernad/consul-template/signals"
 	envparse "github.com/hashicorp/go-envparse"
 	multierror "github.com/hashicorp/go-multierror"
 	"github.com/hernad/nomad/client/allocrunner/taskrunner/interfaces"

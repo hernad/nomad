@@ -15,7 +15,7 @@ import (
 
 	"github.com/armon/circbuf"
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/consul-template/signals"
+	"github.com/hernad/consul-template/signals"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 

@@ -791,8 +791,8 @@ github.com/grpc-ecosystem/grpc-gateway v1.9.5/go.mod h1:vNeuVxBJEsws4ogUvrchl83t
 github.com/grpc-ecosystem/grpc-gateway v1.16.0/go.mod h1:BDjrQk3hbvj6Nolgz8mAMFbcEtjT1g+wF4CSlocrBnw=
 github.com/hashicorp/cap v0.2.0 h1:Cgr1iDczX17y0PNF5VG+bWTtDiimYL8F18izMPbWNy4=
 github.com/hashicorp/cap v0.2.0/go.mod h1:zb3VvIFA0lM2lbmO69NjowV9dJzJnZS89TaM9blXPJA=
-github.com/hashicorp/consul-template v0.31.0 h1:Mn1t5xkq5X3WqylbBBp0tzlFG+0kAB1jW3/sQZRX1bk=
-github.com/hashicorp/consul-template v0.31.0/go.mod h1:nN/+pN3FLriPmcS5HARDgFNzeQvWPW8fo07JZ1olMjU=
+github.com/hernad/consul-template v0.31.0-h h1:Mn1t5xkq5X3WqylbBBp0tzlFG+0kAB1jW3/sQZRX1bk=
+github.com/hernad/consul-template v0.31.0-h/go.mod h1:nN/+pN3FLriPmcS5HARDgFNzeQvWPW8fo07JZ1olMjU=
 github.com/hashicorp/consul/api v1.18.0 h1:R7PPNzTCeN6VuQNDwwhZWJvzCtGSrNpJqfb22h3yH9g=
 github.com/hashicorp/consul/api v1.18.0/go.mod h1:owRRGJ9M5xReDC5nfT8FTJrNAPbT4NM6p/k+d03q2v4=
 github.com/hashicorp/consul/sdk v0.13.0 h1:lce3nFlpv8humJL8rNrrGHYSKc3q+Kxfeg3Ii1m6ZWU=

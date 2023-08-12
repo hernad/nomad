@@ -43,7 +43,7 @@ require (
 	github.com/gosuri/uilive v0.0.4
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/hashicorp/cap v0.2.0
-	github.com/hashicorp/consul-template v0.31.0
+	github.com/hernad/consul-template v0.31.0-h
 	github.com/hashicorp/consul/api v1.18.0
 	github.com/hashicorp/consul/sdk v0.13.0
 	github.com/hashicorp/cronexpr v1.1.2

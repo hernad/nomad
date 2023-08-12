@@ -13,3 +13,5 @@ codecgen \
     -o structs.generated.go \
     -nr="(^ACLCache$)|(^IdentityClaims$)" \
     ${FILES}
+
+sed -i 's/hashicorp\/nomad/hernad\/nomad/g'   nomad/structs/structs.generated.go

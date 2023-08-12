@@ -533,7 +533,7 @@ The previous `Protocol` value can be viewed using the `-verbose` flag.
 #### Changes to `client.template.function_denylist` configuration
 
 consul-template v0.28 added a new function
-[`writeToFile`](https://github.com/hashicorp/consul-template/blob/v0.28.0/docs/templating-language.md#writeToFile)
+[`writeToFile`](https://github.com/hernad/consul-template/blob/v0.28.0/docs/templating-language.md#writeToFile)
 which can write to arbitrary files on the host.
 
 Nomad 1.3.0 disables this function by default in its
@@ -1267,7 +1267,7 @@ for details.
 ### client.template: `vault_grace` deprecation
 
 Nomad 0.11.0 updates
-[consul-template](https://github.com/hashicorp/consul-template) to v0.24.1. This
+[consul-template](https://github.com/hernad/consul-template) to v0.24.1. This
 library deprecates the [`vault_grace`][vault_grace] option for templating
 included in Nomad. The feature has been ignored since Vault 0.5 and as long as
 you are running a more recent version of Vault, you can safely remove

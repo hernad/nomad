@@ -12,7 +12,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/consul-template/signals"
+	"github.com/hernad/consul-template/signals"
 	log "github.com/hashicorp/go-hclog"
 
 	"github.com/hernad/nomad/client/allocrunner/interfaces"

@@ -8,7 +8,7 @@ require (
 	github.com/containernetworking/plugins v1.1.1
 	github.com/creack/pty v1.1.18
 	github.com/golang/protobuf v1.5.2
-	github.com/hashicorp/consul-template v0.29.6-0.20221026140134-90370e07bf62
+	github.com/hernad/consul-template v0.29.6-0.20221026140134-90370e07bf62
 	github.com/hashicorp/go-hclog v1.3.1
 	github.com/hashicorp/go-multierror v1.1.1
 	github.com/hashicorp/go-plugin v1.4.4

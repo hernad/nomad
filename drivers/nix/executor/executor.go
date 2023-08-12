@@ -15,7 +15,7 @@ import (
 
 	"github.com/armon/circbuf"
 	"github.com/creack/pty"
-	"github.com/hashicorp/consul-template/signals"
+	"github.com/hernad/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
 	"github.com/hernad/nomad/client/allocdir"

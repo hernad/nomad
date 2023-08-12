@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/hernad/nomad/drivers/nix/executor"
-	"github.com/hashicorp/consul-template/signals"
+	"github.com/hernad/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hernad/nomad/client/lib/cgutil"
 	"github.com/hernad/nomad/drivers/shared/capabilities"
