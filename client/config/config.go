@@ -50,6 +50,7 @@ var (
 		"exec",
 		"qemu",
 		"java",
+		"nix",
 	}, ",")
 
 	// DefaultChrootEnv is a mapping of directories on the host OS to attempt to embed inside each
