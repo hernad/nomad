@@ -48,13 +48,17 @@ LAST_RELEASE ?= v1.6.0
 
 default: help
 
+#ifeq (Linux,$(THIS_OS))
+#ALL_TARGETS = linux_386 \
+#	linux_amd64 \
+#	linux_arm \
+#	linux_arm64 \
+#	windows_386 \
+#	windows_amd64
+#endif
+
 ifeq (Linux,$(THIS_OS))
-ALL_TARGETS = linux_386 \
-	linux_amd64 \
-	linux_arm \
-	linux_arm64 \
-	windows_386 \
-	windows_amd64
+ALL_TARGETS = linux_amd64
 endif
 
 ifeq (s390x,$(THIS_ARCH))
@@ -75,7 +79,8 @@ ifdef TARGETS
 ALL_TARGETS = $(TARGETS)
 endif
 
-SUPPORTED_OSES = Darwin Linux FreeBSD Windows MSYS_NT
+#SUPPORTED_OSES = Darwin Linux FreeBSD Windows MSYS_NT
+SUPPORTED_OSES = Linux
 
 CGO_ENABLED = 1
 
