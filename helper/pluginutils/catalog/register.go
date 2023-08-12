@@ -9,6 +9,7 @@ import (
 	"github.com/hernad/nomad/drivers/java"
 	"github.com/hernad/nomad/drivers/qemu"
 	"github.com/hernad/nomad/drivers/rawexec"
+	"github.com/hernad/nomad/drivers/nix"
 )
 
 // This file is where all builtin plugins should be registered in the catalog.
