@@ -15,12 +15,12 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	nomadapi "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/config"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	nomadapi "github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/client/config"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

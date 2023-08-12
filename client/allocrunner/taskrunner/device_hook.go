@@ -8,10 +8,10 @@ import (
 	"fmt"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/plugins/device"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/devicemanager"
+	"github.com/hernad/nomad/plugins/device"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 const (

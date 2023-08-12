@@ -18,17 +18,17 @@ import (
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/helper/bufconndialer"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
-	structsc "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/version"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/lib/cgutil"
+	"github.com/hernad/nomad/client/state"
+	"github.com/hernad/nomad/command/agent/host"
+	"github.com/hernad/nomad/helper/bufconndialer"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/nomad/structs"
+	structsc "github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/version"
 )
 
 var (

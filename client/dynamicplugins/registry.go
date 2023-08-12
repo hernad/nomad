@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/helper"
+	"github.com/hernad/nomad/helper"
 )
 
 const (

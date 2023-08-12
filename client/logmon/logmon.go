@@ -12,8 +12,8 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/lib/fifo"
-	"github.com/hashicorp/nomad/client/logmon/logging"
+	"github.com/hernad/nomad/client/lib/fifo"
+	"github.com/hernad/nomad/client/logmon/logging"
 )
 
 const (

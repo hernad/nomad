@@ -4,7 +4,7 @@
 package state
 
 import (
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/plugins/drivers"
 	"golang.org/x/exp/maps"
 )
 

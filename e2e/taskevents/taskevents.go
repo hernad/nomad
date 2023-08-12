@@ -8,13 +8,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/e2e/framework"
+	"github.com/hernad/nomad/testutil"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/helper/uuid"
 )
 
 type TaskEventsTest struct {

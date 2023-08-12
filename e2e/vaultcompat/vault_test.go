@@ -19,10 +19,10 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/command/agent"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/testutil"
 	vapi "github.com/hashicorp/vault/api"
 	"github.com/stretchr/testify/require"
 )

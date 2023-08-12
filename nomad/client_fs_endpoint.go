@@ -13,12 +13,12 @@ import (
 
 	metrics "github.com/armon/go-metrics"
 	log "github.com/hashicorp/go-hclog"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/pointer"
 
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // FileSystem endpoint is used for accessing the logs and filesystem of

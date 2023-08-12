@@ -13,11 +13,11 @@ import (
 	"github.com/hashicorp/go-memdb"
 	multierror "github.com/hashicorp/go-multierror"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/state/paginator"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/state/paginator"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // NodePool endpoint is used for node pool management and interaction.

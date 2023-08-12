@@ -10,11 +10,11 @@ import (
 	"sort"
 	"time"
 
-	e2e "github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/jobspec"
-	"github.com/hashicorp/nomad/testutil"
+	e2e "github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/e2e/framework"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/jobspec"
+	"github.com/hernad/nomad/testutil"
 )
 
 const ns = ""

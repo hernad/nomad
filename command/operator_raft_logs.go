@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper/raftutil"
+	"github.com/hernad/nomad/helper/raftutil"
 	"github.com/posener/complete"
 )
 

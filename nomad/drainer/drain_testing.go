@@ -11,9 +11,9 @@ import (
 
 	"golang.org/x/time/rate"
 
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // This file contains helpers for testing. The raft shims make it hard to test

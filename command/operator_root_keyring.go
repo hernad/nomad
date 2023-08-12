@@ -10,7 +10,7 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 )
 
 // OperatorRootKeyringCommand is a Command implementation

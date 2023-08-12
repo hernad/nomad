@@ -15,8 +15,8 @@ import (
 
 	"github.com/docker/docker/pkg/ioutils"
 	"github.com/hashicorp/go-msgpack/codec"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/structs"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 var (

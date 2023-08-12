@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func HCL() string {

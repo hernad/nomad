@@ -10,7 +10,7 @@ import (
 	"time"
 
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/hernad/nomad/helper"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 )

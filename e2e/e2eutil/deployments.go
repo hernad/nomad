@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/testutil"
 )
 
 func WaitForLastDeploymentStatus(jobID, ns, status string, wc *WaitConfig) error {

@@ -6,7 +6,7 @@ package config
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/pointer"
 	"golang.org/x/exp/slices"
 )
 

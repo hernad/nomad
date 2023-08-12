@@ -12,14 +12,14 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/client/allocrunner/state"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/allocrunner/state"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/client/dynamicplugins"
+	"github.com/hernad/nomad/client/pluginmanager/csimanager"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 // csiHook will wait for remote csi volumes to be attached to the host before

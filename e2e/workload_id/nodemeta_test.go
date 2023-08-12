@@ -8,11 +8,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/jobspec2"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/jobspec2"
 	"github.com/shoenig/test/must"
 )
 

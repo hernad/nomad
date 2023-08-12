@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/hcl"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
 	"github.com/stretchr/testify/require"
 )
 

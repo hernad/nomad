@@ -10,8 +10,8 @@ import (
 	"time"
 
 	metrics "github.com/armon/go-metrics"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 var (

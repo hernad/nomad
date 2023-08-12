@@ -6,12 +6,12 @@ package client
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/mock"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/nomad/mock"
+	nstructs "github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

@@ -9,7 +9,7 @@ import (
 	"net/http"
 
 	"github.com/hashicorp/cap/oidc"
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 )
 
 // CallbackServer is started with NewCallbackServer and creates an HTTP

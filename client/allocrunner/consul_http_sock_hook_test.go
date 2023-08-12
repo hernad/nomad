@@ -9,11 +9,11 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs/config"
 	"github.com/stretchr/testify/require"
 )
 

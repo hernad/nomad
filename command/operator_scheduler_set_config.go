@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	flagHelper "github.com/hashicorp/nomad/helper/flags"
+	"github.com/hernad/nomad/api"
+	flagHelper "github.com/hernad/nomad/helper/flags"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )

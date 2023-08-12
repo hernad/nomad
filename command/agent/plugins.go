@@ -6,9 +6,9 @@ package agent
 import (
 	"fmt"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/catalog"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
+	"github.com/hernad/nomad/helper/pluginutils/catalog"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pluginutils/singleton"
 )
 
 // setupPlugins is used to setup the plugin loaders.

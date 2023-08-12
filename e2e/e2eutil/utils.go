@@ -11,11 +11,11 @@ import (
 	"text/template"
 	"time"
 
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/jobspec2"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	api "github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/jobspec2"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 	"github.com/kr/pretty"
 	"github.com/stretchr/testify/require"
 )

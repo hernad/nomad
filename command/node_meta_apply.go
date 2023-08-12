@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/helper/pointer"
 	"github.com/posener/complete"
 )
 

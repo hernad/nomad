@@ -14,9 +14,9 @@ import (
 	"strings"
 	"syscall"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/helper/escapingio"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/api/contexts"
+	"github.com/hernad/nomad/helper/escapingio"
 	"github.com/moby/term"
 	"github.com/posener/complete"
 )

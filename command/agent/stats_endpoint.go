@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/structs"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func (s *HTTPServer) ClientStatsRequest(resp http.ResponseWriter, req *http.Request) (interface{}, error) {

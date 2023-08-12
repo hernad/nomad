@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/hashicorp/logutils"
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 )
 
 func TestLevelFilter(t *testing.T) {

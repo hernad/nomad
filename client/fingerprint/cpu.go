@@ -7,12 +7,12 @@ import (
 	"fmt"
 	"strconv"
 
-	"github.com/hashicorp/nomad/lib/cpuset"
+	"github.com/hernad/nomad/lib/cpuset"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/stats"
-	shelpers "github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/stats"
+	shelpers "github.com/hernad/nomad/helper/stats"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

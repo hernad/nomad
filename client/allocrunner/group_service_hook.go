@@ -9,12 +9,12 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/serviceregistration/wrapper"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/client/serviceregistration/wrapper"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

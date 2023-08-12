@@ -10,10 +10,10 @@ import (
 	"time"
 
 	metrics "github.com/armon/go-metrics"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // Authenticate extracts an AuthenticatedIdentity from the request context or

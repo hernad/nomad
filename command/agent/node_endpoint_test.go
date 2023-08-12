@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/hernad/nomad/api/contexts"
 	"github.com/posener/complete"
 	"github.com/skratchdot/open-golang/open"
 )

@@ -10,8 +10,8 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/helper/pointer"
 	colorable "github.com/mattn/go-colorable"
 	"github.com/mitchellh/cli"
 	"github.com/mitchellh/colorstring"

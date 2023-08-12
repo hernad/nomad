@@ -11,11 +11,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	agentconsul "github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/config"
+	agentconsul "github.com/hernad/nomad/command/agent/consul"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

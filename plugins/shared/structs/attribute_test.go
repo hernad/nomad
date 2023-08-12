@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/pointer"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,7 +7,7 @@ import (
 	"context"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 	"golang.org/x/exp/maps"
 )
 

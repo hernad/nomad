@@ -6,11 +6,11 @@ package scheduler
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	psstructs "github.com/hernad/nomad/plugins/shared/structs"
 	"github.com/stretchr/testify/require"
 )
 

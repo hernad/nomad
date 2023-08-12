@@ -7,8 +7,8 @@ import (
 	"runtime"
 
 	docker "github.com/fsouza/go-dockerclient"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/stats"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/stats"
 )
 
 var (

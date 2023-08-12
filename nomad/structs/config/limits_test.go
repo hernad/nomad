@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/pointer"
 	"github.com/stretchr/testify/require"
 )
 

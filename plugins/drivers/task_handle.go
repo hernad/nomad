@@ -4,8 +4,8 @@
 package drivers
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/base"
 )
 
 // TaskHandle is the state shared between a driver and the client.

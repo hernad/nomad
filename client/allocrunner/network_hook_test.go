@@ -6,14 +6,14 @@ package allocrunner
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/plugins/drivers/testutils"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
+	"github.com/hernad/nomad/plugins/drivers/testutils"
 	"github.com/shoenig/test"
 	"github.com/shoenig/test/must"
 )

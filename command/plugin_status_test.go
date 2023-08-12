@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/state"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/nomad/state"
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 	"github.com/stretchr/testify/require"

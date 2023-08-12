@@ -6,7 +6,7 @@ package nomad
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // drainerShim implements the drainer.RaftApplier interface required by the

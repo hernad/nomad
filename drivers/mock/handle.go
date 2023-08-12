@@ -9,8 +9,8 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/lib/fifo"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/lib/fifo"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 // taskHandle supervises a mock task

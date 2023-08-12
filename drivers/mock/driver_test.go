@@ -14,17 +14,17 @@ import (
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/testtask"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	basePlug "github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	dtestutil "github.com/hashicorp/nomad/plugins/drivers/testutils"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/testtask"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	basePlug "github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/drivers"
+	dtestutil "github.com/hernad/nomad/plugins/drivers/testutils"
 )
 
 func TestMockDriver_StartWaitRecoverWaitStop(t *testing.T) {

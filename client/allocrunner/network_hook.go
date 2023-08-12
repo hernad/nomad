@@ -8,9 +8,9 @@ import (
 	"fmt"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/miekg/dns"
 )
 

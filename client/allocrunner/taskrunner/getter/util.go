@@ -16,9 +16,9 @@ import (
 	"unicode"
 
 	"github.com/hashicorp/go-getter"
-	"github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/helper/subproc"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/interfaces"
+	"github.com/hernad/nomad/helper/subproc"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

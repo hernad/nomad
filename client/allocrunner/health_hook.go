@@ -10,13 +10,13 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allochealth"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/allochealth"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/client/serviceregistration/checks/checkstore"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // healthSetter is able to set/clear alloc health.

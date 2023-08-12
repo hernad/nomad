@@ -20,12 +20,12 @@ import (
 	"github.com/hashicorp/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/lib/fifo"
-	"github.com/hashicorp/nomad/client/lib/resources"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/stats"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/client/lib/fifo"
+	"github.com/hernad/nomad/client/lib/resources"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/stats"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/syndtr/gocapability/capability"
 )
 

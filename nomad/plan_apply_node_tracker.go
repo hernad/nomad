@@ -10,7 +10,7 @@ import (
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/go-hclog"
 	lru "github.com/hashicorp/golang-lru/v2"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/hernad/nomad/helper"
 	"golang.org/x/time/rate"
 )
 

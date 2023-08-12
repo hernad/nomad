@@ -6,8 +6,8 @@ package state
 import (
 	"time"
 
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/pluginmanager/csimanager"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // State captures the state of the allocation runner.

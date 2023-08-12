@@ -12,20 +12,20 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/drivers/shared/capabilities"
+	"github.com/hernad/nomad/client/lib/cgutil"
+	"github.com/hernad/nomad/drivers/shared/capabilities"
 
 	"github.com/hashicorp/consul-template/signals"
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/drivers/shared/eventer"
-	"github.com/hashicorp/nomad/drivers/shared/executor"
-	"github.com/hashicorp/nomad/drivers/shared/resolvconf"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	"github.com/hashicorp/nomad/plugins/drivers/utils"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/drivers/shared/eventer"
+	"github.com/hernad/nomad/drivers/shared/executor"
+	"github.com/hernad/nomad/drivers/shared/resolvconf"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/drivers"
+	"github.com/hernad/nomad/plugins/drivers/utils"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
+	pstructs "github.com/hernad/nomad/plugins/shared/structs"
 )
 
 const (

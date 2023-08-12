@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 	"github.com/posener/complete"
 )
 

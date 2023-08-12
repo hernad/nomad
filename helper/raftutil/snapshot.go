@@ -10,9 +10,9 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/raft"
 
-	"github.com/hashicorp/nomad/helper/snapshot"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/state"
+	"github.com/hernad/nomad/helper/snapshot"
+	"github.com/hernad/nomad/nomad"
+	"github.com/hernad/nomad/nomad/state"
 )
 
 func RestoreFromArchive(archive io.Reader, filter *nomad.FSMFilter) (*state.StateStore, *raft.SnapshotMeta, error) {

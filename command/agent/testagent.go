@@ -16,17 +16,17 @@ import (
 
 	metrics "github.com/armon/go-metrics"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	client "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/fingerprint"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	sconfig "github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	client "github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/client/fingerprint"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	sconfig "github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/testutil"
 )
 
 // TempDir defines the base dir for temporary directories.

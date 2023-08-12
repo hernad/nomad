@@ -7,7 +7,7 @@ import (
 	"os"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/plugins/shared/cmd/launcher/command"
+	"github.com/hernad/nomad/plugins/shared/cmd/launcher/command"
 	"github.com/mitchellh/cli"
 )
 

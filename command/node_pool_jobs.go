@@ -10,7 +10,7 @@ import (
 
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 )
 
 type NodePoolJobsCommand struct {

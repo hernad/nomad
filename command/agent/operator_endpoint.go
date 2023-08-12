@@ -16,9 +16,9 @@ import (
 	"github.com/hashicorp/go-msgpack/codec"
 	"github.com/hashicorp/raft"
 
-	"github.com/hashicorp/nomad/api"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/api"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // OperatorRequest is used route operator/raft API requests to the implementing

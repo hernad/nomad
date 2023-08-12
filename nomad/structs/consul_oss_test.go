@@ -9,7 +9,7 @@ package structs
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 	"github.com/stretchr/testify/require"
 )
 

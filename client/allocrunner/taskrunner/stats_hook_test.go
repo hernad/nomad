@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/testlog"
 	"github.com/stretchr/testify/require"
 )
 

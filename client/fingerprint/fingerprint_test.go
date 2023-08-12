@@ -8,8 +8,8 @@ package fingerprint
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

@@ -13,10 +13,10 @@ import (
 	"sync"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/users"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/helper/users"
 )
 
 // apiHook exposes the Task API. The Task API allows task's to access the Nomad

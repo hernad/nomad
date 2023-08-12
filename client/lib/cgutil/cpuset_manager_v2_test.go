@@ -10,11 +10,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/nomad/mock"
+	"github.com/hernad/nomad/client/testutil"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/lib/cpuset"
+	"github.com/hernad/nomad/nomad/mock"
 	"github.com/opencontainers/runc/libcontainer/cgroups"
 	"github.com/stretchr/testify/require"
 )

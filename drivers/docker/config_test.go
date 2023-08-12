@@ -6,9 +6,9 @@ package docker
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/pluginutils/hclutils"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"
 )

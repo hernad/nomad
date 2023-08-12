@@ -10,11 +10,11 @@ import (
 
 	consulapi "github.com/hashicorp/consul/api"
 	"github.com/hashicorp/consul/sdk/testutil"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

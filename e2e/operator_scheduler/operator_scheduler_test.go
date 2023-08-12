@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/helper/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

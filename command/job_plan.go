@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/scheduler"
 	"github.com/posener/complete"
 )
 

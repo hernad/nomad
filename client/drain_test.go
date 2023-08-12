@@ -11,14 +11,14 @@ import (
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	nstructs "github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 )
 
 // TestClient_SelfDrainConfig is an integration test of the client's Leave

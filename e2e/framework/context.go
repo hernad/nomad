@@ -6,7 +6,7 @@ package framework
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/hernad/nomad/helper/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

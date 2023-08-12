@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/testutil"
 )
 
 // AgentDisconnect is a test helper function that runs a raw_exec job

@@ -10,11 +10,11 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/plugins/base"
-	dtu "github.com/hashicorp/nomad/plugins/drivers/testutils"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pluginutils/singleton"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/plugins/base"
+	dtu "github.com/hernad/nomad/plugins/drivers/testutils"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 )

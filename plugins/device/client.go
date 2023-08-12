@@ -10,9 +10,9 @@ import (
 
 	"github.com/LK4D4/joincontext"
 	"github.com/golang/protobuf/ptypes"
-	"github.com/hashicorp/nomad/helper/pluginutils/grpcutils"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device/proto"
+	"github.com/hernad/nomad/helper/pluginutils/grpcutils"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/device/proto"
 )
 
 // devicePluginClient implements the client side of a remote device plugin, using

@@ -6,8 +6,8 @@ package consul
 import (
 	"context"
 
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func NoopRestarter() serviceregistration.WorkloadRestarter {

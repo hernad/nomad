@@ -9,12 +9,12 @@ import (
 	"sync"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/allocrunner/taskrunner/template"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	ti "github.com/hernad/nomad/client/allocrunner/taskrunner/interfaces"
+	"github.com/hernad/nomad/client/allocrunner/taskrunner/template"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

@@ -4,11 +4,11 @@
 package consul
 
 import (
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 func BuildAllocServices(

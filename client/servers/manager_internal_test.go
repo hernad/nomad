@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/testlog"
 )
 
 type fauxAddr struct {

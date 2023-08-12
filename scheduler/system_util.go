@@ -13,7 +13,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // materializeSystemTaskGroups is used to materialize all the task groups

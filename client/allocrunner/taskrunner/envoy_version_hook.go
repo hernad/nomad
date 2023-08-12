@@ -11,11 +11,11 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-version"
-	ifs "github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/consul"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/envoy"
-	"github.com/hashicorp/nomad/nomad/structs"
+	ifs "github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/consul"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/helper/envoy"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

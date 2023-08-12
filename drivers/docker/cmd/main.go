@@ -14,10 +14,10 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/drivers/docker"
-	"github.com/hashicorp/nomad/drivers/docker/docklog"
-	"github.com/hashicorp/nomad/plugins"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/hernad/nomad/drivers/docker"
+	"github.com/hernad/nomad/drivers/docker/docklog"
+	"github.com/hernad/nomad/plugins"
+	"github.com/hernad/nomad/plugins/base"
 )
 
 func main() {

@@ -5,9 +5,9 @@ package getter
 
 import (
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/client/interfaces"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // New creates a Sandbox with the given ArtifactConfig.

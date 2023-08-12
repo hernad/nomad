@@ -11,8 +11,8 @@ import (
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-multierror"
 
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // Namespace endpoint is used for manipulating namespaces

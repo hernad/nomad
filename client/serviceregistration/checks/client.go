@@ -17,9 +17,9 @@ import (
 
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/helper/useragent"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/helper/useragent"
+	"github.com/hernad/nomad/nomad/structs"
 	"oss.indeed.com/go/libtime"
 )
 

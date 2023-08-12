@@ -6,8 +6,8 @@ package client
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/config"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/config"
 	"github.com/stretchr/testify/require"
 )
 

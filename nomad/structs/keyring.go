@@ -7,9 +7,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/crypto"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/helper/crypto"
+	"github.com/hernad/nomad/helper/uuid"
 )
 
 // RootKey is used to encrypt and decrypt variables. It is never stored in raft.

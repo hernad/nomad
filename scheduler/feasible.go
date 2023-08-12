@@ -12,9 +12,9 @@ import (
 
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/helper/constraints/semver"
-	"github.com/hashicorp/nomad/nomad/structs"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/helper/constraints/semver"
+	"github.com/hernad/nomad/nomad/structs"
+	psstructs "github.com/hernad/nomad/plugins/shared/structs"
 	"golang.org/x/exp/constraints"
 )
 

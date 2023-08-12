@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 )
 
 type AllocStopCommand struct {

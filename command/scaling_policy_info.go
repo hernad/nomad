@@ -10,8 +10,8 @@ import (
 	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/api/contexts"
 )
 
 // Ensure ScalingPolicyInfoCommand satisfies the cli.Command interface.

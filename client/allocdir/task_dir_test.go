@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/testlog"
 )
 
 // Test that building a chroot will skip nonexistent directories.

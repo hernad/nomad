@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 	vapi "github.com/hashicorp/vault/api"
 	"golang.org/x/exp/slices"
 )

@@ -12,12 +12,12 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/hashicorp/nomad/helper"
-	hargs "github.com/hashicorp/nomad/helper/args"
-	"github.com/hashicorp/nomad/helper/escapingfs"
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/helper"
+	hargs "github.com/hernad/nomad/helper/args"
+	"github.com/hernad/nomad/helper/escapingfs"
+	"github.com/hernad/nomad/lib/cpuset"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/zclconf/go-cty/cty"
 )
 

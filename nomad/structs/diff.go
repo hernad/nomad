@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/hashicorp/nomad/helper/flatmap"
+	"github.com/hernad/nomad/helper/flatmap"
 	"github.com/mitchellh/hashstructure"
 )
 

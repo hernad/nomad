@@ -9,10 +9,10 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/scheduler"
 )
 
 // BenchmarkSchedulerExample is an example of how to write a one-off

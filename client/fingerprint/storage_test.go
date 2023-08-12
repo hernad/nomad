@@ -7,9 +7,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func TestStorageFingerprint(t *testing.T) {

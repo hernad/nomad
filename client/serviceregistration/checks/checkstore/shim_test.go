@@ -6,12 +6,12 @@ package checkstore
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/serviceregistration/checks"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/serviceregistration/checks"
+	"github.com/hernad/nomad/client/state"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/shoenig/test/must"
 	"golang.org/x/exp/slices"
 )

@@ -6,8 +6,8 @@ package main
 import (
 	log "github.com/hashicorp/go-hclog"
 
-	"github.com/hashicorp/nomad/plugins"
-	"github.com/hashicorp/nomad/plugins/device/cmd/example"
+	"github.com/hernad/nomad/plugins"
+	"github.com/hernad/nomad/plugins/device/cmd/example"
 )
 
 func main() {

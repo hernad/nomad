@@ -8,7 +8,7 @@ package catalog
 import (
 	"sync"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
 )
 
 var (

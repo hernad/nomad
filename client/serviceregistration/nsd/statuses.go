@@ -4,7 +4,7 @@
 package nsd
 
 import (
-	"github.com/hashicorp/nomad/client/serviceregistration/checks/checkstore"
+	"github.com/hernad/nomad/client/serviceregistration/checks/checkstore"
 )
 
 func NewStatusGetter(shim checkstore.Shim) *StatusGetter {

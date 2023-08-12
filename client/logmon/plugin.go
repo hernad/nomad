@@ -10,8 +10,8 @@ import (
 
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/client/logmon/proto"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/hernad/nomad/client/logmon/proto"
+	"github.com/hernad/nomad/plugins/base"
 	"google.golang.org/grpc"
 )
 

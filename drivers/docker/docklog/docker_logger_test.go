@@ -15,10 +15,10 @@ import (
 	docker "github.com/fsouza/go-dockerclient"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	ctu "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	ctu "github.com/hernad/nomad/client/testutil"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/testutil"
 )
 
 func testContainerDetails() (image string, imageName string, imageTag string) {

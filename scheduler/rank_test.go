@@ -7,9 +7,9 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

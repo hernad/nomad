@@ -13,12 +13,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 	"github.com/stretchr/testify/require"
 )
 

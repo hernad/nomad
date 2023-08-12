@@ -12,12 +12,12 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	ti "github.com/hernad/nomad/client/allocrunner/taskrunner/interfaces"
+	"github.com/hernad/nomad/client/dynamicplugins"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/csi"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 // csiPluginSupervisorHook manages supervising plugins that are running as Nomad

@@ -16,13 +16,13 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/allocdir"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/allocdir"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 	"github.com/stretchr/testify/require"
 )
 

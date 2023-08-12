@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/hashicorp/nomad/lib/cpuset"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/lib/cpuset"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

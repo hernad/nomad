@@ -9,8 +9,8 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/plugins/base"
 )
 
 var (

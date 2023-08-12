@@ -11,11 +11,11 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/lib/fifo"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/lib/fifo"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/testutil"
 	"github.com/stretchr/testify/require"
 )
 

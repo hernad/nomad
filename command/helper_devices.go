@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 	"github.com/mitchellh/cli"
 )
 

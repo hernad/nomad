@@ -8,7 +8,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 )
 
 func TestAutopilotConfig_Merge(t *testing.T) {

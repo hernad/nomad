@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-getter"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/testutil"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/mitchellh/go-homedir"
 	"github.com/shoenig/test/must"
 )

@@ -12,10 +12,10 @@ import (
 	"github.com/shoenig/test"
 	"github.com/shoenig/test/must"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/helper/pointer"
 )
 
 func TestNodePoolJobsListCommand_Run(t *testing.T) {

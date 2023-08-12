@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 	"github.com/mitchellh/cli"
 	"github.com/stretchr/testify/assert"
 )

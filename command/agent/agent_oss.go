@@ -8,7 +8,7 @@ package agent
 
 import (
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/nomad/structs/config"
 )
 
 // EnterpriseAgent holds information and methods for enterprise functionality

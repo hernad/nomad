@@ -8,9 +8,9 @@ import (
 	"fmt"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
+	"github.com/hernad/nomad/client/dynamicplugins"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/csi"
 	"golang.org/x/exp/maps"
 )
 

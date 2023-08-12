@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
-	e2e "github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
+	e2e "github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/e2e/framework"
+	"github.com/hernad/nomad/helper/uuid"
 )
 
 const ns = ""

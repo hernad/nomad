@@ -4,7 +4,7 @@
 package config
 
 import (
-	"github.com/hashicorp/nomad/helper"
+	"github.com/hernad/nomad/helper"
 	"golang.org/x/exp/slices"
 )
 

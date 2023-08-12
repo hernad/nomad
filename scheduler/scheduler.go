@@ -10,8 +10,8 @@ import (
 
 	memdb "github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

@@ -13,7 +13,7 @@ import (
 
 	"github.com/hashicorp/go-cleanhttp"
 	"github.com/hashicorp/go-getter"
-	"github.com/hashicorp/nomad/helper"
+	"github.com/hernad/nomad/helper"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 )

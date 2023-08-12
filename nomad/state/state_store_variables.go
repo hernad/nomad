@@ -9,8 +9,8 @@ import (
 
 	"github.com/hashicorp/go-memdb"
 
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // Variables queries all the variables and is used only for

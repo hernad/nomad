@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/brianvoe/gofakeit/v6"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 type MockVariables map[string]*structs.VariableDecrypted

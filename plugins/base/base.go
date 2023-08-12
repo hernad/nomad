@@ -4,8 +4,8 @@
 package base
 
 import (
-	"github.com/hashicorp/nomad/plugins/base/proto"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/hernad/nomad/plugins/base/proto"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
 )
 
 // BasePlugin is the interface that all Nomad plugins must support.

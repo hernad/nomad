@@ -4,8 +4,8 @@
 package structs
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/csi"
 )
 
 // CSIVolumeMountOptions contains the mount options that should be provided when

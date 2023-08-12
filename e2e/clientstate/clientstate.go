@@ -16,16 +16,16 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/state"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/execagent"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/discover"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/state"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/e2e/execagent"
+	"github.com/hernad/nomad/e2e/framework"
+	"github.com/hernad/nomad/helper/discover"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/testutil"
 )
 
 func init() {

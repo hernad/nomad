@@ -15,8 +15,8 @@ import (
 	"github.com/posener/complete"
 	"golang.org/x/exp/slices"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/api/contexts"
 )
 
 type AllocStatusCommand struct {

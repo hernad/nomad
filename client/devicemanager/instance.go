@@ -11,12 +11,12 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pluginutils/singleton"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/base"
+	bstructs "github.com/hernad/nomad/plugins/base/structs"
+	"github.com/hernad/nomad/plugins/device"
 )
 
 const (

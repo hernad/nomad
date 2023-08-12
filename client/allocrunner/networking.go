@@ -7,8 +7,8 @@ import (
 	"context"
 	"sync"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 // NetworkConfigurator sets up and tears down the interfaces, routes, firewall

@@ -6,8 +6,8 @@ package consul
 import (
 	"sync"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // MockServiceIdentitiesClient is used for testing the client for managing consul service

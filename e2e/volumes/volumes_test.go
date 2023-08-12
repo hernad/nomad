@@ -10,11 +10,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/jobspec"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/jobspec"
+	"github.com/hernad/nomad/testutil"
 )
 
 const ns = ""

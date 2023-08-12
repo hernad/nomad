@@ -12,11 +12,11 @@ import (
 	"syscall"
 
 	"github.com/containernetworking/plugins/pkg/ns"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/client/lib/resources"
-	"github.com/hashicorp/nomad/client/taskenv"
-	"github.com/hashicorp/nomad/helper/users"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/client/lib/cgutil"
+	"github.com/hernad/nomad/client/lib/resources"
+	"github.com/hernad/nomad/client/taskenv"
+	"github.com/hernad/nomad/helper/users"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/opencontainers/runc/libcontainer/configs"
 	"github.com/opencontainers/runc/libcontainer/specconv"
 )

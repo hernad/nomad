@@ -19,12 +19,12 @@ import (
 	"github.com/docker/docker/pkg/ioutils"
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/api"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/nomad"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/api"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/command/agent/host"
+	"github.com/hernad/nomad/command/agent/pprof"
+	"github.com/hernad/nomad/nomad"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/hashicorp/serf/serf"
 )
 

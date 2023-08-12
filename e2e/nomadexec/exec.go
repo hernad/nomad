@@ -13,11 +13,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/e2e/e2eutil"
-	"github.com/hashicorp/nomad/e2e/framework"
-	"github.com/hashicorp/nomad/helper/uuid"
-	dtestutils "github.com/hashicorp/nomad/plugins/drivers/testutils"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/e2e/e2eutil"
+	"github.com/hernad/nomad/e2e/framework"
+	"github.com/hernad/nomad/helper/uuid"
+	dtestutils "github.com/hernad/nomad/plugins/drivers/testutils"
 	"github.com/stretchr/testify/assert"
 )
 

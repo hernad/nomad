@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	capi "github.com/hashicorp/consul/api"
-	napi "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/helper/useragent"
-	"github.com/hashicorp/nomad/helper/uuid"
+	napi "github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/helper/useragent"
+	"github.com/hernad/nomad/helper/uuid"
 	vapi "github.com/hashicorp/vault/api"
 )
 

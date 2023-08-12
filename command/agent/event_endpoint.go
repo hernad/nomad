@@ -16,7 +16,7 @@ import (
 
 	"github.com/docker/docker/pkg/ioutils"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 	"golang.org/x/sync/errgroup"
 )
 

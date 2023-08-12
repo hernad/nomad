@@ -14,10 +14,10 @@ import (
 	multierror "github.com/hashicorp/go-multierror"
 	plugin "github.com/hashicorp/go-plugin"
 	version "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclspecutils"
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/base"
+	"github.com/hernad/nomad/helper/pluginutils/hclspecutils"
+	"github.com/hernad/nomad/helper/pluginutils/hclutils"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/plugins/base"
 	"github.com/zclconf/go-cty/cty/msgpack"
 )
 

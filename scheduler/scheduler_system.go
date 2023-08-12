@@ -9,8 +9,8 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

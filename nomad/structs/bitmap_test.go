@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 )
 
 func TestBitmap(t *testing.T) {

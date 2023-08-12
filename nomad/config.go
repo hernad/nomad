@@ -14,12 +14,12 @@ import (
 	"golang.org/x/exp/slices"
 
 	"github.com/hashicorp/memberlist"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/deploymentwatcher"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/deploymentwatcher"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/scheduler"
 	"github.com/hashicorp/raft"
 	"github.com/hashicorp/serf/serf"
 )

@@ -10,11 +10,11 @@ import (
 	"strings"
 
 	"github.com/golang/snappy"
-	"github.com/hashicorp/nomad/acl"
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/jobspec"
-	"github.com/hashicorp/nomad/jobspec2"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	api "github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/jobspec"
+	"github.com/hernad/nomad/jobspec2"
+	"github.com/hernad/nomad/nomad/structs"
 	"golang.org/x/exp/maps"
 	"golang.org/x/exp/slices"
 )

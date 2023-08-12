@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // placementResult is an allocation that must be placed. It potentially has a

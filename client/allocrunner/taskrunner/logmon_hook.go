@@ -14,12 +14,12 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/logmon"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/structs"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/logmon"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/structs"
+	bstructs "github.com/hernad/nomad/plugins/base/structs"
+	pstructs "github.com/hernad/nomad/plugins/shared/structs"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 )

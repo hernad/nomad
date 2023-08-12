@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/hashicorp/consul/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/uuid"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/uuid"
 	"github.com/stretchr/testify/require"
 )
 

@@ -6,8 +6,8 @@ package api
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/api/internal/testutil"
+	"github.com/hernad/nomad/api/contexts"
+	"github.com/hernad/nomad/api/internal/testutil"
 	"github.com/shoenig/test/must"
 )
 

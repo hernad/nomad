@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/lib/cgutil"
+	"github.com/hernad/nomad/client/lib/cgutil"
 )
 
 const (

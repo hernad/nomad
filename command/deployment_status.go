@@ -14,8 +14,8 @@ import (
 	"time"
 
 	"github.com/gosuri/uilive"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/api/contexts"
 	"github.com/mitchellh/go-glint"
 	"github.com/mitchellh/go-glint/components"
 	"github.com/moby/term"

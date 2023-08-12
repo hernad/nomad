@@ -13,8 +13,8 @@ import (
 
 	"github.com/armon/go-metrics"
 	"github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/nomad/structs"
 
 	"github.com/hashicorp/go-hclog"
 )

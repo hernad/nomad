@@ -4,7 +4,7 @@
 package drainer
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

@@ -15,19 +15,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
 	"golang.org/x/time/rate"
 
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/testutil"
 	vapi "github.com/hashicorp/vault/api"
 	vaultconsts "github.com/hashicorp/vault/sdk/helper/consts"
 )

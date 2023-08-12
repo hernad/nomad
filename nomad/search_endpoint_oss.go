@@ -10,9 +10,9 @@ import (
 	"fmt"
 
 	memdb "github.com/hashicorp/go-memdb"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 var (

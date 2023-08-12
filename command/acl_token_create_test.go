@@ -7,9 +7,9 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/command/agent"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/require"

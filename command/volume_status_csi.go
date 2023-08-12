@@ -10,7 +10,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 )
 
 func (c *VolumeStatusCommand) csiBanner() {

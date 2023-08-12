@@ -9,8 +9,8 @@ import (
 
 	"github.com/hashicorp/hcl/v2"
 	"github.com/hashicorp/hcl/v2/ext/dynblock"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/jobspec2/hclutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/jobspec2/hclutil"
 	"github.com/zclconf/go-cty/cty"
 )
 

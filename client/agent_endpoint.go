@@ -12,17 +12,17 @@ import (
 
 	"github.com/hashicorp/go-msgpack/codec"
 
-	"github.com/hashicorp/nomad/command/agent/host"
-	"github.com/hashicorp/nomad/command/agent/monitor"
-	"github.com/hashicorp/nomad/command/agent/pprof"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/command/agent/host"
+	"github.com/hernad/nomad/command/agent/monitor"
+	"github.com/hernad/nomad/command/agent/pprof"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/nomad/structs"
 
 	metrics "github.com/armon/go-metrics"
 	log "github.com/hashicorp/go-hclog"
 
-	sframer "github.com/hashicorp/nomad/client/lib/streamframer"
-	cstructs "github.com/hashicorp/nomad/client/structs"
+	sframer "github.com/hernad/nomad/client/lib/streamframer"
+	cstructs "github.com/hernad/nomad/client/structs"
 )
 
 type Agent struct {

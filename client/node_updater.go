@@ -9,10 +9,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/client/devicemanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/csimanager"
-	"github.com/hashicorp/nomad/client/pluginmanager/drivermanager"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/devicemanager"
+	"github.com/hernad/nomad/client/pluginmanager/csimanager"
+	"github.com/hernad/nomad/client/pluginmanager/drivermanager"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 var (

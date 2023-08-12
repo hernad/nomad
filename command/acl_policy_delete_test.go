@@ -7,11 +7,11 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/command/agent"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )

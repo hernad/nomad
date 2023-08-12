@@ -4,8 +4,8 @@
 package allocrunner
 
 import (
-	"github.com/hashicorp/nomad/client/lib/cgutil"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/lib/cgutil"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func newCgroupHook(alloc *structs.Allocation, man cgutil.CpusetManager) *cgroupHook {

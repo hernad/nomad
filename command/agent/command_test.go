@@ -10,15 +10,15 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/pointer"
 	"github.com/mitchellh/cli"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/version"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/version"
 )
 
 func TestCommand_Implements(t *testing.T) {

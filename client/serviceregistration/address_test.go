@@ -6,8 +6,8 @@ package serviceregistration
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/stretchr/testify/require"
 )
 

@@ -7,9 +7,9 @@ import (
 	"testing"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	regMock "github.com/hashicorp/nomad/client/serviceregistration/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/serviceregistration"
+	regMock "github.com/hernad/nomad/client/serviceregistration/mock"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/stretchr/testify/require"
 )
 

@@ -11,12 +11,12 @@ import (
 	"testing"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/helper/pluginutils/catalog"
-	"github.com/hashicorp/nomad/helper/pluginutils/loader"
-	"github.com/hashicorp/nomad/helper/pluginutils/singleton"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/helper/pluginutils/catalog"
+	"github.com/hernad/nomad/helper/pluginutils/loader"
+	"github.com/hernad/nomad/helper/pluginutils/singleton"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 type testManager struct {

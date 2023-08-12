@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api/internal/testutil"
+	"github.com/hernad/nomad/api/internal/testutil"
 	"github.com/mitchellh/mapstructure"
 	"github.com/shoenig/test/must"
 )

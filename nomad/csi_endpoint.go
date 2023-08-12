@@ -15,11 +15,11 @@ import (
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-multierror"
 
-	"github.com/hashicorp/nomad/acl"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/state/paginator"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/state/paginator"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // CSIVolume wraps the structs.CSIVolume with request data and server context

@@ -8,9 +8,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 func (c *Client) DrainSelf() error {

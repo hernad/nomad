@@ -4,8 +4,8 @@
 package interfaces
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/device"
 )
 
 type Client interface {

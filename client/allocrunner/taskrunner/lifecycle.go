@@ -6,7 +6,7 @@ package taskrunner
 import (
 	"context"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // Restart restarts a task that is already running. Returns an error if the

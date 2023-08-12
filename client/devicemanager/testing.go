@@ -4,9 +4,9 @@
 package devicemanager
 
 import (
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/device"
 )
 
 type ReserveFn func(d *structs.AllocatedDeviceResource) (*device.ContainerReservation, error)

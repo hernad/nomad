@@ -11,9 +11,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	"github.com/hashicorp/nomad/client/stats"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	"github.com/hernad/nomad/client/stats"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 const (

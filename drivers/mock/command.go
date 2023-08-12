@@ -10,8 +10,8 @@ import (
 	"time"
 
 	hclog "github.com/hashicorp/go-hclog"
-	bstructs "github.com/hashicorp/nomad/plugins/base/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	bstructs "github.com/hernad/nomad/plugins/base/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 func runCommand(c Command, stdout, stderr io.WriteCloser, cancelCh <-chan struct{}, pluginExitTimer <-chan time.Time, logger hclog.Logger) *drivers.ExitResult {

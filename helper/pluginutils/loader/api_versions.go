@@ -4,9 +4,9 @@
 package loader
 
 import (
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/device"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 var (

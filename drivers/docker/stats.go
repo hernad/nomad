@@ -11,10 +11,10 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/drivers/docker/util"
-	"github.com/hashicorp/nomad/helper"
-	nstructs "github.com/hashicorp/nomad/nomad/structs"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/drivers/docker/util"
+	"github.com/hernad/nomad/helper"
+	nstructs "github.com/hernad/nomad/nomad/structs"
 )
 
 const (

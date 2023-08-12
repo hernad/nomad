@@ -7,9 +7,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/nomad/mock"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/command/agent"
+	"github.com/hernad/nomad/nomad/mock"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )

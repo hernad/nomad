@@ -7,10 +7,10 @@ import (
 	"context"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client/testutil"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/shoenig/test/must"
 )
 

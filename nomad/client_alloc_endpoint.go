@@ -14,10 +14,10 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
 
-	"github.com/hashicorp/nomad/acl"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/acl"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // ClientAllocations is used to forward RPC requests to the targeted Nomad client's

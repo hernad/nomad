@@ -17,9 +17,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	multierror "github.com/hashicorp/go-multierror"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/escapingfs"
-	"github.com/hashicorp/nomad/nomad/structs"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/escapingfs"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/hpcloud/tail/watch"
 	tomb "gopkg.in/tomb.v1"
 )

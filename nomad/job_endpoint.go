@@ -18,14 +18,14 @@ import (
 	"github.com/hashicorp/go-memdb"
 	"github.com/hashicorp/go-multierror"
 	"github.com/hashicorp/go-set"
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/state/paginator"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/scheduler"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/state/paginator"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/scheduler"
 )
 
 const (

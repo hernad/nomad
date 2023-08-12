@@ -8,9 +8,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/testutil"
 	"github.com/mitchellh/cli"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

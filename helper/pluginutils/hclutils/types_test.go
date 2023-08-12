@@ -6,8 +6,8 @@ package hclutils_test
 import (
 	"testing"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/hclutils"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/hernad/nomad/helper/pluginutils/hclutils"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
 	"github.com/stretchr/testify/require"
 )
 

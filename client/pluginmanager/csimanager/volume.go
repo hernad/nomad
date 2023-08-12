@@ -15,9 +15,9 @@ import (
 	grpc_retry "github.com/grpc-ecosystem/go-grpc-middleware/retry"
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/helper/mount"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
+	"github.com/hernad/nomad/helper/mount"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/csi"
 )
 
 var _ VolumeMounter = &volumeManager{}

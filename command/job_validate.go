@@ -9,10 +9,10 @@ import (
 	"strings"
 
 	"github.com/hashicorp/go-multierror"
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/command/agent"
-	"github.com/hashicorp/nomad/helper"
-	"github.com/hashicorp/nomad/helper/pointer"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/command/agent"
+	"github.com/hernad/nomad/helper"
+	"github.com/hernad/nomad/helper/pointer"
 	"github.com/posener/complete"
 )
 

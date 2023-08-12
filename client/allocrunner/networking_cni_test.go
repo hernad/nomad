@@ -11,8 +11,8 @@ import (
 	"testing"
 
 	"github.com/containerd/go-cni"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/testlog"
 	"github.com/shoenig/test/must"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

@@ -9,7 +9,7 @@ import (
 	"io"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
+	"github.com/hernad/nomad/ci"
 	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )

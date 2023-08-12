@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/plugins/drivers"
 	"github.com/stretchr/testify/assert"
 )
 

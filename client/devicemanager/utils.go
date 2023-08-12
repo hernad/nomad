@@ -7,9 +7,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/device"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/device"
+	psstructs "github.com/hernad/nomad/plugins/shared/structs"
 )
 
 // UnknownDeviceError is returned when an operation is attempted on an unknown

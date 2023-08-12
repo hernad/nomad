@@ -11,9 +11,9 @@ import (
 
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-msgpack/codec"
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/helper/boltdd"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/dynamicplugins"
+	"github.com/hernad/nomad/helper/boltdd"
+	"github.com/hernad/nomad/nomad/structs"
 	"go.etcd.io/bbolt"
 )
 

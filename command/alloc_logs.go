@@ -13,9 +13,9 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/hashicorp/nomad/command/ui"
+	"github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/api/contexts"
+	"github.com/hernad/nomad/command/ui"
 	"github.com/posener/complete"
 )
 

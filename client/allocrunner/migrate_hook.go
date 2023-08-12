@@ -8,8 +8,8 @@ import (
 	"fmt"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocdir"
-	"github.com/hashicorp/nomad/client/config"
+	"github.com/hernad/nomad/client/allocdir"
+	"github.com/hernad/nomad/client/config"
 )
 
 // diskMigrationHook migrates ephemeral disk volumes. Depends on alloc dir

@@ -8,7 +8,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/hashicorp/nomad/api"
+	"github.com/hernad/nomad/api"
 	"github.com/posener/complete"
 )
 

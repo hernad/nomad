@@ -16,13 +16,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/ci"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/testutil"
 	"github.com/hashicorp/raft"
 )
 

@@ -16,17 +16,17 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/hashicorp/nomad/acl"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client"
-	cconfig "github.com/hashicorp/nomad/client/config"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/lib/lang"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/acl"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client"
+	cconfig "github.com/hernad/nomad/client/config"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/lib/lang"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 )
 
 func TestCSIVolumeEndpoint_Get(t *testing.T) {

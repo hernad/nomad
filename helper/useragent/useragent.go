@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"runtime"
 
-	"github.com/hashicorp/nomad/version"
+	"github.com/hernad/nomad/version"
 )
 
 const (

@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/hashicorp/nomad/helper/uuid"
-	psstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	psstructs "github.com/hernad/nomad/plugins/shared/structs"
 )
 
 // NodeResourcesToAllocatedResources converts a node resources to an allocated

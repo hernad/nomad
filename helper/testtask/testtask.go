@@ -11,8 +11,8 @@ import (
 	"os/exec"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/drivers"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/drivers"
 )
 
 // Path returns the path to the currently running executable.

@@ -10,12 +10,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/command/agent/consul"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/version"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/command/agent/consul"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/version"
 	testing "github.com/mitchellh/go-testing-interface"
 	"github.com/shoenig/test/must"
 )

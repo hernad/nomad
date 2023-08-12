@@ -13,9 +13,9 @@ import (
 
 	metrics "github.com/armon/go-metrics"
 	hclog "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/helper/useragent"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/helper/useragent"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs/config"
 	vaultapi "github.com/hashicorp/vault/api"
 )
 

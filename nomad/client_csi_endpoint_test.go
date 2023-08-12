@@ -11,14 +11,14 @@ import (
 
 	memdb "github.com/hashicorp/go-memdb"
 	msgpackrpc "github.com/hashicorp/net-rpc-msgpackrpc"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/client"
-	"github.com/hashicorp/nomad/client/config"
-	cstructs "github.com/hashicorp/nomad/client/structs"
-	"github.com/hashicorp/nomad/helper/uuid"
-	"github.com/hashicorp/nomad/nomad/mock"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/testutil"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/client"
+	"github.com/hernad/nomad/client/config"
+	cstructs "github.com/hernad/nomad/client/structs"
+	"github.com/hernad/nomad/helper/uuid"
+	"github.com/hernad/nomad/nomad/mock"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/testutil"
 	"github.com/stretchr/testify/require"
 )
 

@@ -11,9 +11,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/csi"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
 	"google.golang.org/grpc"
 )
 

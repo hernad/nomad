@@ -17,9 +17,9 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/hashicorp/nomad/ci"
-	ctestutil "github.com/hashicorp/nomad/client/testutil"
-	"github.com/hashicorp/nomad/helper/testlog"
+	"github.com/hernad/nomad/ci"
+	ctestutil "github.com/hernad/nomad/client/testutil"
+	"github.com/hernad/nomad/helper/testlog"
 )
 
 // TestPrevAlloc_StreamAllocDir_Ok asserts that streaming a tar to an alloc dir

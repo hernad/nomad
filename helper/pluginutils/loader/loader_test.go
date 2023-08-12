@@ -14,11 +14,11 @@ import (
 
 	log "github.com/hashicorp/go-hclog"
 	version "github.com/hashicorp/go-version"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs/config"
-	"github.com/hashicorp/nomad/plugins/base"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/structs/config"
+	"github.com/hernad/nomad/plugins/base"
+	"github.com/hernad/nomad/plugins/device"
 	"github.com/stretchr/testify/require"
 )
 

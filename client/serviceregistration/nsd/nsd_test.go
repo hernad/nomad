@@ -12,8 +12,8 @@ import (
 	"time"
 
 	"github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/serviceregistration"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/serviceregistration"
+	"github.com/hernad/nomad/nomad/structs"
 	"github.com/shoenig/test"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

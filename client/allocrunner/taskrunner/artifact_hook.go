@@ -9,10 +9,10 @@ import (
 	"sync"
 
 	log "github.com/hashicorp/go-hclog"
-	"github.com/hashicorp/nomad/client/allocrunner/interfaces"
-	ti "github.com/hashicorp/nomad/client/allocrunner/taskrunner/interfaces"
-	ci "github.com/hashicorp/nomad/client/interfaces"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/client/allocrunner/interfaces"
+	ti "github.com/hernad/nomad/client/allocrunner/taskrunner/interfaces"
+	ci "github.com/hernad/nomad/client/interfaces"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // artifactHook downloads artifacts for a task.

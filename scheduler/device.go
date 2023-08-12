@@ -8,7 +8,7 @@ import (
 
 	"math"
 
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // deviceAllocator is used to allocate devices to allocations. The allocator

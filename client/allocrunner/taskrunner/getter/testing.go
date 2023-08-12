@@ -8,10 +8,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	cconfig "github.com/hashicorp/nomad/client/config"
-	"github.com/hashicorp/nomad/helper/pointer"
-	"github.com/hashicorp/nomad/helper/testlog"
-	sconfig "github.com/hashicorp/nomad/nomad/structs/config"
+	cconfig "github.com/hernad/nomad/client/config"
+	"github.com/hernad/nomad/helper/pointer"
+	"github.com/hernad/nomad/helper/testlog"
+	sconfig "github.com/hernad/nomad/nomad/structs/config"
 	"github.com/shoenig/test/must"
 )
 

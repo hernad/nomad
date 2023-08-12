@@ -8,9 +8,9 @@ import (
 
 	pb "github.com/golang/protobuf/proto"
 	plugin "github.com/hashicorp/go-plugin"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
 	"github.com/stretchr/testify/require"
 	"github.com/zclconf/go-cty/cty"
 	"github.com/zclconf/go-cty/cty/msgpack"

@@ -19,9 +19,9 @@ import (
 	"github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
 
-	"github.com/hashicorp/nomad/drivers/docker/docklog"
-	"github.com/hashicorp/nomad/plugins/drivers"
-	pstructs "github.com/hashicorp/nomad/plugins/shared/structs"
+	"github.com/hernad/nomad/drivers/docker/docklog"
+	"github.com/hernad/nomad/plugins/drivers"
+	pstructs "github.com/hernad/nomad/plugins/shared/structs"
 )
 
 type taskHandle struct {

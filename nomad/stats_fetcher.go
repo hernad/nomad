@@ -12,8 +12,8 @@ import (
 	"github.com/hashicorp/raft"
 	autopilot "github.com/hashicorp/raft-autopilot"
 
-	"github.com/hashicorp/nomad/helper/pool"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/helper/pool"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 // StatsFetcher has two functions for autopilot. First, lets us fetch all the

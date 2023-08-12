@@ -13,9 +13,9 @@ import (
 
 	csipbv1 "github.com/container-storage-interface/spec/lib/go/csi"
 	"github.com/golang/protobuf/ptypes/wrappers"
-	"github.com/hashicorp/nomad/ci"
-	"github.com/hashicorp/nomad/nomad/structs"
-	fake "github.com/hashicorp/nomad/plugins/csi/testing"
+	"github.com/hernad/nomad/ci"
+	"github.com/hernad/nomad/nomad/structs"
+	fake "github.com/hernad/nomad/plugins/csi/testing"
 	"github.com/stretchr/testify/require"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"

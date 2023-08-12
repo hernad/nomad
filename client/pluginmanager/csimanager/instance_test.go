@@ -9,11 +9,11 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hashicorp/nomad/client/dynamicplugins"
-	"github.com/hashicorp/nomad/helper/testlog"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/csi"
-	"github.com/hashicorp/nomad/plugins/csi/fake"
+	"github.com/hernad/nomad/client/dynamicplugins"
+	"github.com/hernad/nomad/helper/testlog"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/csi"
+	"github.com/hernad/nomad/plugins/csi/fake"
 	"github.com/stretchr/testify/require"
 )
 

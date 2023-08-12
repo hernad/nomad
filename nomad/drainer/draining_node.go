@@ -8,8 +8,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hashicorp/nomad/nomad/state"
-	"github.com/hashicorp/nomad/nomad/structs"
+	"github.com/hernad/nomad/nomad/state"
+	"github.com/hernad/nomad/nomad/structs"
 )
 
 type drainingNode struct {

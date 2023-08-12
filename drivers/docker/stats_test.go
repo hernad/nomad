@@ -10,8 +10,8 @@ import (
 	"time"
 
 	docker "github.com/fsouza/go-dockerclient"
-	"github.com/hashicorp/nomad/ci"
-	cstructs "github.com/hashicorp/nomad/client/structs"
+	"github.com/hernad/nomad/ci"
+	cstructs "github.com/hernad/nomad/client/structs"
 	"github.com/stretchr/testify/require"
 )
 

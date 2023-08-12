@@ -12,8 +12,8 @@ import (
 	"testing"
 	"time"
 
-	api "github.com/hashicorp/nomad/api"
-	"github.com/hashicorp/nomad/testutil"
+	api "github.com/hernad/nomad/api"
+	"github.com/hernad/nomad/testutil"
 	"github.com/kr/pretty"
 	"github.com/shoenig/test/must"
 	"github.com/shoenig/test/wait"

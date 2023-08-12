@@ -7,9 +7,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/nomad/helper/pluginutils/grpcutils"
-	"github.com/hashicorp/nomad/plugins/base/proto"
-	"github.com/hashicorp/nomad/plugins/shared/hclspec"
+	"github.com/hernad/nomad/helper/pluginutils/grpcutils"
+	"github.com/hernad/nomad/plugins/base/proto"
+	"github.com/hernad/nomad/plugins/shared/hclspec"
 )
 
 // BasePluginClient implements the client side of a remote base plugin, using

@@ -9,9 +9,9 @@ import (
 	"errors"
 	"time"
 
-	"github.com/hashicorp/nomad/client/stats"
-	"github.com/hashicorp/nomad/nomad/structs"
-	"github.com/hashicorp/nomad/plugins/device"
+	"github.com/hernad/nomad/client/stats"
+	"github.com/hernad/nomad/nomad/structs"
+	"github.com/hernad/nomad/plugins/device"
 )
 
 // RpcError is used for serializing errors with a potential error code
