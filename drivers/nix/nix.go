@@ -24,7 +24,8 @@ in buildPackages.closureInfo { rootPaths = builtins.storePath path; }
 func prepareNixPackages(taskDir string, packages []string, nixpkgs string) (hclutils.MapStrStr, error) {
 	mounts := make(hclutils.MapStrStr)
 
-	profileLink := filepath.Join(taskDir, "current-profile")
+	//profileLink := filepath.Join(taskDir, "current-profile")
+	profileLink := taskDir
 	profile, err := nixBuildProfile(taskDir, packages, profileLink)
 	if err != nil {
 		return nil, fmt.Errorf("Build of the flakes failed: %v", err)
