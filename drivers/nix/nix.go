@@ -25,7 +25,7 @@ func prepareNixPackages(taskDir string, packages []string, nixpkgs string) (hclu
 	mounts := make(hclutils.MapStrStr)
 
 	//profileLink := filepath.Join(taskDir, "current-profile")
-	profileLink := taskDir
+	profileLink := filepath.Join(taskDir, "usr")
 	profile, err := nixBuildProfile(taskDir, packages, profileLink)
 	if err != nil {
 		return nil, fmt.Errorf("Build of the flakes failed: %v", err)

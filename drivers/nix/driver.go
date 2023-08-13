@@ -574,8 +574,10 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 		cfg.Mounts = append(cfg.Mounts, &mount_config)
 	}
 
-	// Set PATH to /bin
-	// cfg.Env["PATH"] = "/current-profile/bin"
+
+	//cfg.Env["PATH"] = "/current-profile/bin"
+    cfg.Env["PATH"] = "/usr/bin"
+
 
 	// Bind mounts specified in task config
 	for host, task := range driverConfig.Bind {
