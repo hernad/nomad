@@ -53,7 +53,7 @@ var (
 	// plugin catalog.
 	PluginConfig = &loader.InternalPluginConfig{
 		Config:  map[string]interface{}{},
-		Factory: func(ctx context.Context, l hclog.Logger) interface{} { return NewPlugin(ctx, l) },
+		Factory: func(ctx context.Context, l hclog.Logger) interface{} { return NewNixDriver(ctx, l) },
 	}
 
 	// pluginInfo is the response returned for the PluginInfo RPC
@@ -121,8 +121,7 @@ var (
 	}
 )
 
-// Driver fork/execs tasks using many of the underlying OS's isolation
-// features where configured.
+
 type Driver struct {
 	// eventer is used to handle multiplexing of TaskEvents calls such that an
 	// event can be broadcast to all callers
@@ -140,10 +139,6 @@ type Driver struct {
 	// ctx is the context for the driver. It is passed to other subsystems to
 	// coordinate shutdown
 	ctx context.Context
-
-	// signalShutdown is called when the driver is shutting down and cancels
-	// the ctx passed to any subsystems
-	signalShutdown context.CancelFunc
 
 	// logger will log to the Nomad agent
 	logger hclog.Logger
@@ -278,7 +273,7 @@ type TaskState struct {
 }
 
 // NewPlugin returns a new DrivePlugin implementation
-func NewPlugin(ctx context.Context, logger hclog.Logger) drivers.DriverPlugin {
+func NewNixDriver(ctx context.Context, logger hclog.Logger) drivers.DriverPlugin {
 	//ctx, cancel := context.WithCancel(context.Background())
 	logger = logger.Named(pluginName)
 	return &Driver{
@@ -580,7 +575,7 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 	}
 
 	// Set PATH to /bin
-	cfg.Env["PATH"] = "/bin"
+	//cfg.Env["PATH"] = "/bin"
 
 	// Bind mounts specified in task config
 	for host, task := range driverConfig.Bind {
@@ -637,7 +632,7 @@ func (d *Driver) StartTask(cfg *drivers.TaskConfig) (*drivers.TaskHandle, *drive
 	ps, err := exec.Launch(execCmd)
 	if err != nil {
 		pluginClient.Kill()
-		return nil, nil, fmt.Errorf("failed to launch command with executor: %v", err)
+		return nil, nil, fmt.Errorf("failed to launch nixos command with executor: %v", err)
 	}
 
 	h := &taskHandle{
